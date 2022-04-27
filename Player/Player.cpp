@@ -11,8 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f),
-	texFileName("graphics/player.png")
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine)
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -185,13 +184,19 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 	if (InputMgr::GetMouseButton(Mouse::Button::Left))
 	{
-		if (timer > shootRate)
+		if (timer > shootRate && currMagazine != 0)
 		{
 			Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
 			timer = 0.f;
+			currMagazine--;
 		}
-	
 	}
+
+	if (InputMgr::GetKeyDown(Keyboard::R))
+	{
+		currMagazine = MaxMagazine;
+	}
+
 
 	auto it = useBullets.begin();
 	while (it != useBullets.end())

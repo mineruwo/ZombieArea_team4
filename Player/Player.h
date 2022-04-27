@@ -15,11 +15,13 @@ class Player
 {
 private:
 	const float START_SPEED = 200;
-	const float START_SHOTRATE = 1.f;
+	const float START_SHOTRATE = 0.1f;
 	//second 단위에오
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 1000;
 	//밀리세컨드라 1000이 1초인점 감안해야해요.
+
+	const int START_MAX_MAGAZINE = 30;
 
 	Vector2f position;
 
@@ -36,6 +38,8 @@ private:
 	float shootRate;
 	float timer;
 
+	int MaxMagazine;
+	int currMagazine;
 	int health;
 	int maxHealth;
 	float immuneMs;
