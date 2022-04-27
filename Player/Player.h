@@ -17,7 +17,7 @@ private:
 	const float START_SPEED = 200;
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 1000;
-	//밀리세컨드라 1000이 1초인점 감안해야해요
+	//밀리세컨드라 1000이 1초인점 감안해야해요.
 
 	Vector2f position;
 
