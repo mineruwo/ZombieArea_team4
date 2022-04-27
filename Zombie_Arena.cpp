@@ -154,6 +154,8 @@ int main()
 	VertexArray tileMap;
 	CreateBackGround(tileMap, arena);
 
+	//initialize 
+
 	int i = 0;
 	while (window.isOpen())
 	{
@@ -198,6 +200,10 @@ int main()
 			zombie->UpdateCollision(player, playTime);
 			
 		}
+
+
+		//Update
+
 		window.clear();
 
 		window.setView(mainView);

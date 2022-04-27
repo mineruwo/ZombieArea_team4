@@ -11,7 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f),
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f),
 	texFileName("graphics/player.png")
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
@@ -72,7 +72,6 @@ void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
 
 bool Player::OnHitted(Time timeHit)
 {
-
 
 	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs)
 	{
@@ -181,9 +180,17 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	float dgree = radian * 180.f / 3.141592;
 	sprite.setRotation(dgree);
 
-	if (InputMgr::GetMouseButtonDown(Mouse::Button::Left))
+
+	timer += dt;
+
+	if (InputMgr::GetMouseButton(Mouse::Button::Left))
 	{
-		Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
+		if (timer > shootRate)
+		{
+			Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
+			timer = 0.f;
+		}
+	
 	}
 
 	auto it = useBullets.begin();

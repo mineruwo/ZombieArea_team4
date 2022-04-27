@@ -40,6 +40,9 @@ bool Zombie::OnHitted()
 {
 	std::cout << "hit" << std::endl;
 
+
+
+
 	//여기서 죽었을때도 처리 해야함 예를 들면 그 자리에 핏자국 만드는거
 
 	// 피자 먹구 싶다
