@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Utils/TextureHolder.h"
 #include "../Utils/Utils.h"
+#include "../Player/Player.h"
 #include <string>
 using namespace sf;
 using namespace std;

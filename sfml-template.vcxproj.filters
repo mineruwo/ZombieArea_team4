@@ -20,6 +20,9 @@
     <Filter Include="Wall">
       <UniqueIdentifier>{21c67c6a-c424-424b-8123-6f20c0f325f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{854bdda8-7c23-47c9-a457-202f8ad5260d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Zombie_Arena.cpp" />
@@ -47,6 +50,12 @@
     <ClCompile Include="Player\PickUp.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="UI\UI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\ReloadBar.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\InputMgr.h">
@@ -71,6 +80,12 @@
       <Filter>Wall</Filter>
     </ClInclude>
     <ClInclude Include="Player\PickUp.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\ReloadBar.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

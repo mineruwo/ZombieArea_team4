@@ -19,6 +19,7 @@ Zombie::Zombie()
 			info.speed = 40.f;
 			info.health = 5;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CHASER];
 			info.type = ZombieTypes::CHASER;
@@ -26,6 +27,7 @@ Zombie::Zombie()
 			info.speed = 70.f;
 			info.health = 1;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CRAWLER];
 			info.type = ZombieTypes::CRAWLER;
@@ -40,13 +42,13 @@ Zombie::Zombie()
 bool Zombie::OnHitted(float timeZomHit)
 {
 	//std::cout << "hit" << std::endl;
-	//¿©±â¼­ Á×¾úÀ»¶§µµ Ã³¸® ÇØ¾ßÇÔ ¿¹¸¦ µé¸é ±× ÀÚ¸®¿¡ ÇÍÀÚ±¹ ¸¸µå´Â°Å
-	//ÀÏÁ¤½Ã°£ Áö³­ ÈÄ »ç¶óÁö±â		
+	//ì—¬ê¸°ì„œ ì£½ì—ˆì„ë•Œë„ ì²˜ë¦¬ í•´ì•¼í•¨ ì˜ˆë¥¼ ë“¤ë©´ ê·¸ ìžë¦¬ì— í•ìžêµ­ ë§Œë“œëŠ”ê±°
+	//ì¼ì •ì‹œê°„ ì§€ë‚œ í›„ ì‚¬ë¼ì§€ê¸°		
 	health--;	
 	if (health < 0)
 	{		
-		alive = false; //È¸Àü
-		speed = 0; //¿òÁ÷ÀÓ		
+		alive = false; //íšŒì „
+		speed = 0; //ì›€ì§ìž„		
 		
 		timer -= timeZomHit;
 		if (timer < 0.f)
@@ -126,7 +128,7 @@ void Zombie::Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wa
 
 void Zombie::Update(float dt, Vector2f playerPosition)
 {
-	// ÀÌµ¿	
+	// ì´ë™	
 	Vector2f dir;
 
 	dir = playerPosition - position;
@@ -136,11 +138,12 @@ void Zombie::Update(float dt, Vector2f playerPosition)
 
 	if (alive == true)
 	{
-		// È¸Àü
+		// íšŒì „
 		float radian = atan2(dir.y, dir.x);
 		float dgree = radian * 180.f / 3.141592;
 		sprite.setRotation(dgree);
 	}	
+
 }
 
 bool Zombie::UpdateCollision(Player& player, Time time)

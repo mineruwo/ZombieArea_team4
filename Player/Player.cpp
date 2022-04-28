@@ -11,8 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f),
-	texFileName("graphics/player.png")
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f),reloadingTime(START_RELOADING_TIME)
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -77,6 +76,7 @@ bool Player::OnHitted(Time timeHit)
 		lastHit = timeHit;
 		health -= 10;
 		//std::cout << timeHit.asSeconds() << endl;
+
 		return true;
 	}
 	return false;
@@ -114,7 +114,7 @@ int Player::GetHealth() const
 
 void Player::Update(float dt, std::vector <Wall*> walls)
 {
-	// ¿Ãµø
+	// Ïù¥Îèô
 	float h = InputMgr::GetAxis(Axis::Horizontal);
 	float v= InputMgr::GetAxis(Axis::Vertical);
 	Vector2f dir(h, v);
@@ -129,7 +129,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setPosition(position);
 
 
-	//√Êµπ
+	//Ï∂©Îèå
 	for (auto v : walls)
 	{
 		if (sprite.getGlobalBounds().intersects(v->GetWallRect()))
@@ -166,9 +166,9 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 			sprite.setPosition(position);
 		}
 	}
-	//æÁΩ…ªÛ ¥Ÿ∏• πˆ¿¸¿∏∑Œ ∏∏µÈæÓ∫¡æﬂ∞⁄¥Ÿ.
+	//ÏñëÏã¨ÏÉÅ Îã§Î•∏ Î≤ÑÏ†ÑÏúºÎ°ú ÎßåÎì§Ïñ¥Î¥êÏïºÍ≤†Îã§.
 
-	// »∏¿¸
+	// ÌöåÏ†Ñ
 	Vector2i mousePos = InputMgr::GetMousePosition();
 	Vector2i mouseDir;
 	mouseDir.x = mousePos.x - resolution.x * 0.5f;
@@ -177,9 +177,37 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	float dgree = radian * 180.f / 3.141592;
 	sprite.setRotation(dgree);
 
-	if (InputMgr::GetMouseButtonDown(Mouse::Button::Left))
+
+	timer += dt;
+	if (isReload)
 	{
-		Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
+		reloadtimer += dt;
+	}
+
+	if (reloadingTime < reloadtimer)
+	{
+		isReload = false;
+	}
+
+	if (InputMgr::GetMouseButton(Mouse::Button::Left))
+	{
+		if (timer > shootRate && currMagazine != 0 && !isReload)
+		{
+			Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
+			timer = 0.f;
+			currMagazine--;
+		}
+	}
+
+	if (InputMgr::GetKeyDown(Keyboard::R))
+	{
+		if (!isReload)
+		{
+			Reload();
+			isReload = true;
+			reloadtimer = 0.f;
+		}
+	
 	}
 
 	auto it = useBullets.begin();
@@ -198,8 +226,6 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 			++it;
 		}
 	}
-
-
 }
 
 void Player::Draw(RenderWindow& window)
@@ -265,3 +291,52 @@ void Player::UpgradeMaxHealth()
 {
 	maxHealth += START_HEALTH * 0.2f;
 }
+
+int Player::GetCurrMag()
+{
+	return currMagazine;
+}
+
+int Player::GetMaxMag()
+{
+	return MaxMagazine;
+}
+
+int Player::GetTotalAmmo()
+{
+	return totalAmmo;
+}
+
+void Player::Reload()
+{
+	if (currMagazine < MaxMagazine && totalAmmo >= MaxMagazine)
+	{
+		totalAmmo -= MaxMagazine - currMagazine;
+
+		currMagazine = MaxMagazine;
+	}
+	else if (currMagazine < MaxMagazine && totalAmmo < MaxMagazine - currMagazine)
+	{
+		if (totalAmmo == 0)
+		{
+			//Ï¥ùÏïåÏù¥ ÏóÜÎäîÍ≤ÉÏùÑ ÌëúÌòÑÌïòÏûê.
+		}
+		else
+		{
+			currMagazine += totalAmmo;
+			totalAmmo = 0;
+		}
+	}
+}
+
+bool Player::IsReload()
+{
+	return isReload;
+}
+
+int Player::AddAmmo()
+{
+	totalAmmo += 20;
+}
+
+

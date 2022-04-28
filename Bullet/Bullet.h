@@ -21,7 +21,6 @@ private :
 	float distance;
 
 
-	//발사 속도는 여기서 구현해야겠다. 간격? ㅇㅇ
 public :
 	Bullet();
 
