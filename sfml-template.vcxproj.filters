@@ -4,15 +4,13 @@
     <ClCompile Include="Zombie_Arena.cpp" />
     <ClCompile Include="Bullet\Bullet.cpp">
       <Filter>Bullet</Filter>
+
     </ClCompile>
     <ClCompile Include="Wall\Wall.cpp">
       <Filter>Wall</Filter>
     </ClCompile>
     <ClCompile Include="Zombie\Zombie.cpp">
       <Filter>Zombie</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\InputMgr.cpp">
-      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Utils\TextureHolder.cpp">
       <Filter>Utils</Filter>
@@ -23,8 +21,14 @@
     <ClCompile Include="UI\UI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMgr\SceneMgr.cpp">
-      <Filter>SceneMgr</Filter>
+    <ClCompile Include="Utils\InputMgr.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PickUp.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Scene\GameOver.cpp">
       <Filter>Scene</Filter>
@@ -35,43 +39,49 @@
     <ClCompile Include="Scene\Pause.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Player\ReloadBar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr\SceneMgr.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\TextureHolder.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
     <ClCompile Include="Scene\Title.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player\PickUp.cpp">
-      <Filter>Player</Filter>
+    <ClCompile Include="UI\UI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
+    <ClCompile Include="Utils\Utils.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Player\ReloadBar.cpp">
-      <Filter>Player</Filter>
+    <ClCompile Include="Wall\Wall.cpp">
+      <Filter>Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie\Zombie.cpp">
+      <Filter>Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet\Bullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Wall\Wall.h">
-      <Filter>Wall</Filter>
-    </ClInclude>
     <ClInclude Include="Zombie\Zombie.h">
       <Filter>Zombie</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\InputMgr.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\TextureHolder.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Utils.h">
-      <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMgr\SceneMgr.h">
-      <Filter>SceneMgr</Filter>
+    <ClInclude Include="Utils\InputMgr.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PickUp.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Scene\GameOver.h">
       <Filter>Scene</Filter>
@@ -82,18 +92,52 @@
     <ClInclude Include="Scene\Pause.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Player\ReloadBar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr\SceneMgr.h">
+
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TextureHolder.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Scene\Title.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player\PickUp.h">
-      <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="Player\Player.h">
-      <Filter>Player</Filter>
+    <ClInclude Include="Utils\Utils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Player\ReloadBar.h">
-      <Filter>Player</Filter>
+    <ClInclude Include="Wall\Wall.h">
+      <Filter>Wall</Filter>
     </ClInclude>
+    <ClInclude Include="Zombie\Zombie.h">
+      <Filter>Zombie</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{fd065ace-0886-4e5e-be5c-72118c76ac20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{6593cef7-67ca-4488-b11d-78f2d900d50e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{b50607ff-a15a-4ff8-bb05-b745b16a5de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{3b472f05-2d21-46fc-a92b-e7f301f55475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zombie">
+      <UniqueIdentifier>{397d6879-3c1c-40ae-98f8-14dd0ea765fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{60c8dcde-6ca4-4323-84a3-cb68e94288a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wall">
+      <UniqueIdentifier>{5b8fa9ef-e8bd-4a8b-9093-93708eebeee1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Bullet">

@@ -29,7 +29,6 @@
     <ClCompile Include="Scene\Title.cpp" />
     <ClCompile Include="Player\ReloadBar.cpp" />
     <ClCompile Include="UI\UI.cpp" />
-
     <ClCompile Include="Utils\InputMgr.cpp" />
     <ClCompile Include="Utils\TextureHolder.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
@@ -46,10 +45,8 @@
     <ClInclude Include="Scene\LevelUp.h" />
     <ClInclude Include="Scene\Pause.h" />
     <ClInclude Include="Scene\Title.h" />
-
     <ClInclude Include="Player\ReloadBar.h" />
     <ClInclude Include="UI\UI.h" />
-
     <ClInclude Include="Utils\InputMgr.h" />
     <ClInclude Include="Utils\TextureHolder.h" />
     <ClInclude Include="Utils\Utils.h" />

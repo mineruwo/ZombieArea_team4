@@ -2,11 +2,9 @@
 
 SceneMgr::SceneMgr()
 {
-	bool titleOn = true;
-	bool lvUP = false;
-	bool pause = false;
-	bool gameover = false;
+
 }
+
 
 //bool SceneMgr::sceneOper(const Event& event)
 //{
@@ -17,35 +15,39 @@ SceneMgr::SceneMgr()
 //		break;
 //	case Keyboard::Num1:
 //		lvUP = false;
-//		//¿¬»ç¼Óµµ Áõ°¡
+//		//ï¿½ï¿½ï¿½ï¿½Óµï¿½ ï¿½ï¿½
 //		break;
 //	case Keyboard::Num2:
 //		lvUP = false;
-//		//ÅºÃ¢¼öÁõ°¡
+//		//ÅºÃ¢ï¿½ï¿½ï¿½ï¿½
 //	case Keyboard::Num3:
 //		lvUP = false;
-//		//Ã¼·ÂÁõ°¡
+//		//Ã¼ï¿½ï¿½ï¿½ï¿½
 //	case Keyboard::Num4:
 //		lvUP = false;
-//		//ÀÌµ¿¼ÓµµÁõ°¡
+//		//ï¿½Ìµï¿½ï¿½Óµï¿½ï¿½ï¿½
 //	case Keyboard::Num5:
 //		lvUP = false;
-//		//¾ÆÀÌÅÛ È¸º¹·® Áõ°¡
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 //	case Keyboard::Num6:
 //		lvUP = false;
-//		//¾ÆÀÌÅÛ ÅºÁõ°¡¼ö Áõ°¡
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Åºï¿½ï¿½ï¿½ ï¿½ï¿½
 //		break;
 //	}
 //	return;
 //}
 
-void SceneMgr::sceneChange()
+bool SceneMgr::sceneOper(const Event& event)
 {
 
-	/*if (titleOn)
-	{
-		Title::Draw(RenderWindow& window)
-	}*/
+	return true;
+}
 
+
+
+
+void SceneMgr::sceneChange(Scene id)
+{
+	currscene = id;
 }
 
