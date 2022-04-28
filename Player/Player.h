@@ -15,9 +15,9 @@ class Player
 {
 private:
 	const float START_SPEED = 200;
-	const float START_SHOTRATE = 0.5f;
+	const float START_SHOTRATE = 0.1f;
 	//second 단위에오
-	const float START_HEALTH = 100000;
+	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 3000;
 	//밀리세컨드라 1000이 1초인점 감안해야해요.
 
@@ -43,7 +43,9 @@ private:
 	int MaxMagazine;
 	int currMagazine;
 	int totalAmmo;
+
 	float reloadingTime;
+	float currReload;
 	float reloadtimer;
 	bool isReload;
 
@@ -52,8 +54,6 @@ private:
 	float immuneMs;
 	float immuneTimer = 0.f;
 	bool isImuune = false;
-
-
 
 	Time lastHit;
 
@@ -98,7 +98,9 @@ public:
 	int GetMaxHealth();
 
 	void Reload();
-	bool IsReload();
+	float GetMaxReload();
+	float GetCurrReload();
+	bool& IsReload();
 
 };
 

@@ -18,7 +18,7 @@ class SceneMgr
 {
 private:
 
-	Scene scene;
+	Scene currscene;
 	bool titleOn;
 	bool lvUP;
 	bool pause;
@@ -28,7 +28,7 @@ private:
 public:
 	SceneMgr();
 	bool sceneOper(const Event& event);
-	void sceneChange();
+	void sceneChange(Scene id);
 
 };
 

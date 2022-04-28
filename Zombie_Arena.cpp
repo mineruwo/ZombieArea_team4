@@ -207,7 +207,7 @@ int main()
 		InputMgr::Update(dt.asSeconds(), window, mainView);
 		player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
-		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload());
+		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload(),player.GetMaxReload(),player.GetCurrReload());
 
 		player.UpdateCollision(zombies, dt.asMilliseconds());
 		player.UpdateCollisionPickup(items);

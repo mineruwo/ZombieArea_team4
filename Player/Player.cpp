@@ -11,7 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f),reloadingTime(START_RELOADING_TIME)
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f), reloadingTime(START_RELOADING_TIME), currReload(reloadingTime)
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -194,7 +194,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 		reloadtimer += dt;
 	}
 
-	if (reloadingTime < reloadtimer)
+	if (currReload < reloadtimer)
 	{
 		isReload = false;
 	}
@@ -222,6 +222,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	if (InputMgr::GetKeyDown(Keyboard::X))
 	{
 		health = maxHealth;
+
 	}
 
 	if (isImuune)
@@ -355,7 +356,7 @@ void Player::Reload()
 	}
 }
 
-bool Player::IsReload()
+bool& Player::IsReload()
 {
 	return isReload;
 }
@@ -368,6 +369,16 @@ int Player::GetHealth()
 int Player::GetMaxHealth()
 {
 	return maxHealth;
+}
+
+float Player::GetMaxReload()
+{
+	return reloadingTime;
+}
+
+float Player::GetCurrReload()
+{
+	return currReload;
 }
 
 
