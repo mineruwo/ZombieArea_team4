@@ -212,7 +212,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 	if (InputMgr::GetKeyDown(Keyboard::R))
 	{
-		if (!isReload && totalAmmo > 0)
+		if (!isReload && totalAmmo > 0 && currMagazine != MaxMagazine)
 		{
 			Reload();
 			isReload = true;

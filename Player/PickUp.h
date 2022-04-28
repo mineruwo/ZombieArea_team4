@@ -34,6 +34,9 @@ private:
 
 	int amount;
 
+	int totalHealth;
+	int totalAmmo;
+
 
 public:
 	PickUp(PickupType type);

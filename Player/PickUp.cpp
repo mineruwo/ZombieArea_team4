@@ -2,8 +2,7 @@
 #include <iostream>
 
 PickUp::PickUp(PickupType type)
-	:type(type), amount(5)
-
+:type(type), amount(5)
 {
 	string textureID;
 
@@ -88,6 +87,7 @@ void PickUp::Spawn(bool spawn)
 		timer = START_WAIT_TIME;
 	}
 }
+
 void PickUp::GotIt(Player* player)
 {
 	switch (type)

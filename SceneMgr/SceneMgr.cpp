@@ -1,6 +1,5 @@
 #include "SceneMgr.h"
 
-
 SceneMgr::SceneMgr(RenderWindow& window)
     : window(&window)
 {
@@ -12,55 +11,50 @@ SceneMgr::~SceneMgr()
 
 void SceneMgr::sceneInitialize()
 {
-        switch (currscene)
-        {
-        case Scene::TITLE:
-            break;
-        case Scene::GAME:
+    switch (currscene)
+    {
+    case Scene::TITLE:
+        break;
+    case Scene::GAME:
         //    scene = new GAME;
-            break;
-        case Scene::LEVELUP:
-            break;
-        case Scene::PAUSE:
-            break;
-        case Scene::GAMEOVER:
-            break;
-        }
+        break;
+    case Scene::LEVELUP:
+        break;
+    case Scene::PAUSE:
+        break;
+    case Scene::GAMEOVER:
+        break;
+    }
 }
 
-void SceneMgr::SceneUpdate()
+void SceneMgr::SceneUpdate(Player& player, PickUp& pickup)
 {
     switch (currscene)
     {
     case Scene::TITLE:
-        SceneMgr::SceneDraw();
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
             SceneChange(Scene::GAME);
         }
         break;
     case Scene::GAME:
-        SceneMgr::SceneDraw();
         if (InputMgr::GetKeyDown(Keyboard::P))
         {
             SceneChange(Scene::PAUSE);
         }
         break;
     case Scene::LEVELUP:
-        SceneMgr::SceneDraw();
-        LevelUp::SelectUpgrade();
+        levelup.SelectUpgrade(player, pickup);
         SceneChange(Scene::GAME);
 
         break;
     case Scene::PAUSE:
-        SceneMgr::SceneDraw();
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
             SceneChange(Scene::GAME);
         }
         break;
     case Scene::GAMEOVER:
-        SceneMgr::SceneDraw();
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
             SceneChange(Scene::GAME);
@@ -83,10 +77,10 @@ void SceneMgr::SceneDraw()
     switch (currscene)
     {
     case Scene::TITLE:
-    title.Draw(*window);
+        title.Draw(*window);
         break;
     case Scene::GAME:
-      //  Game::Draw(*window);
+        //  Game::Draw(*window);
         break;
     case Scene::LEVELUP:
         levelup.Draw(*window);
@@ -99,12 +93,4 @@ void SceneMgr::SceneDraw()
         break;
     }
 
-
-void SceneMgr::sceneChange(Scene id)
-{
-	currscene = id;
 }
-
-
-
-

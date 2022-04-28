@@ -31,6 +31,8 @@ private:
 	GameOver gameover;
 
 
+
+
 public:
 
 
@@ -38,10 +40,8 @@ public:
 	~SceneMgr();
 
 	void sceneInitialize();
-	void SceneUpdate(); // Ű���� �����ϴ°� switch case �ۼ�
+	void SceneUpdate(Player& player, PickUp& pickup); // 키값에 반응하는것 switch case 작성
 	void SceneChange(Scene id);
 	void SceneDraw(); //
 
-
 };
-

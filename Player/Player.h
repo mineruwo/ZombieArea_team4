@@ -35,8 +35,6 @@ private:
 
 	int tileSize;
 
-	Player& player;
-
 	Vector2f direction;
 	float speed;
 	float shootRate;

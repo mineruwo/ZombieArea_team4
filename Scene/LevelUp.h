@@ -2,11 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "../Player/Player.h"
 #include "../Player/PickUp.h"
+#include "../Utils/InputMgr.h"
 
 using namespace sf;
-
-
-
 
 class LevelUp
 {
@@ -24,8 +22,4 @@ public:
 	void SelectUpgrade(Player& player, PickUp& pickup);
 	void Draw(RenderWindow& window);
 
-
-
-
 };
-
