@@ -48,10 +48,11 @@ public:
 
 	bool IsSpwawned();
 
-	void PlayerUpdate();
-
 	Sprite GetSprite();
 	FloatRect GetGlobalBounds();
+
+	void UpgradePickupAmmo();
+	void UpgradePickupHealth();
 
 };
 

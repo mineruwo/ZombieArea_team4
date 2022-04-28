@@ -16,8 +16,6 @@ private:
 public:
 
 	Title();
-	bool IsTitleOn(const Event& event);
-	//Sprite GetSprite();
 	void Draw(RenderWindow& window);
 
 

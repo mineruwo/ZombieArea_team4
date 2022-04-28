@@ -110,3 +110,13 @@ FloatRect PickUp::GetGlobalBounds()
 {
 	return sprite.getGlobalBounds();
 }
+
+void PickUp::UpgradePickupAmmo()
+{
+	totalAmmo += 5;
+}
+
+void PickUp::UpgradePickupHealth()
+{
+	totalHealth += 10;
+}

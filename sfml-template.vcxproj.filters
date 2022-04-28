@@ -1,115 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{2859c0b4-6a20-411a-ba73-b3aecf1eb94f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{b9c5aa67-d8dc-49e7-b980-267001b78d44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Zombie">
-      <UniqueIdentifier>{b3b9635f-448b-40d9-a512-fd579caaf226}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Bullet">
-      <UniqueIdentifier>{f91f0420-66dd-4d79-b8d7-7cf5af93895b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Wall">
-      <UniqueIdentifier>{21c67c6a-c424-424b-8123-6f20c0f325f7}</UniqueIdentifier>
-    </Filter>
-
-    <Filter Include="SceneMgr">
-      <UniqueIdentifier>{c45eb47b-d4e3-4a16-a25c-f233c33c993c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{d92b7db3-9395-4bb9-aa3c-618e1768e167}</UniqueIdentifier>
-
-    <Filter Include="UI">
-      <UniqueIdentifier>{854bdda8-7c23-47c9-a457-202f8ad5260d}</UniqueIdentifier>
-      
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Zombie_Arena.cpp" />
-    <ClCompile Include="Utils\InputMgr.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\Utils.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Player\Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\TextureHolder.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Zombie\Zombie.cpp">
-      <Filter>Zombie</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet\Bullet.cpp">
       <Filter>Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall\Wall.cpp">
-      <Filter>Wall</Filter>
-    </ClCompile>
-    <ClCompile Include="Player\PickUp.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-
-    <ClCompile Include="SceneMgr\SceneMgr.cpp">
-      <Filter>SceneMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Pause.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Title.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\GameOver.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\LevelUp.cpp">
       <Filter>Scene</Filter>
-
+    </ClCompile>
+    <ClCompile Include="Scene\Pause.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PickUp.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\ReloadBar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\InputMgr.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr\SceneMgr.cpp">
+      <Filter>SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\TextureHolder.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Title.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
     <ClCompile Include="UI\UI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Player\ReloadBar.cpp">
-      <Filter>Player</Filter>
-
+    <ClCompile Include="Utils\Utils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie\Zombie.cpp">
+      <Filter>Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall\Wall.cpp">
+      <Filter>Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utils\InputMgr.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Utils.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Player\Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\TextureHolder.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Zombie\Zombie.h">
-      <Filter>Zombie</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet\Bullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Wall\Wall.h">
-      <Filter>Wall</Filter>
-    </ClInclude>
-    <ClInclude Include="Player\PickUp.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-
-    <ClInclude Include="SceneMgr\SceneMgr.h">
-      <Filter>SceneMgr</Filter>
+    <ClInclude Include="Scene\GameOver.h">
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\LevelUp.h">
       <Filter>Scene</Filter>
@@ -117,17 +61,64 @@
     <ClInclude Include="Scene\Pause.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Player\PickUp.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\ReloadBar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\InputMgr.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr\SceneMgr.h">
+      <Filter>SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TextureHolder.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Scene\Title.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\GameOver.h">
-      <Filter>Scene</Filter>
-
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Player\ReloadBar.h">
-      <Filter>Player</Filter>
+    <ClInclude Include="Utils\Utils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Zombie\Zombie.h">
+      <Filter>Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall\Wall.h">
+      <Filter>Wall</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Player">
+      <UniqueIdentifier>{2ca84ef8-3481-4898-8901-bc3daa554648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{ad74ef72-5b40-4e9e-aafd-32cc7243fe4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{b8290c92-2b85-44ad-b756-602ec6e86c0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zombie">
+      <UniqueIdentifier>{7570b58e-867c-4760-a98d-215733b40024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{55fd3169-fb4f-49b5-a11d-75f892519941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneMgr">
+      <UniqueIdentifier>{6a1a542f-4d17-4970-9bc9-69bc60426105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{9cd10efd-89d3-413d-91ca-2e48bc89a6cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wall">
+      <UniqueIdentifier>{c92ddaa0-40e7-41f8-bee2-b0542072f40f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

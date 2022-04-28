@@ -334,9 +334,5 @@ bool Player::IsReload()
 	return isReload;
 }
 
-int Player::AddAmmo()
-{
-	totalAmmo += 20;
-}
 
 

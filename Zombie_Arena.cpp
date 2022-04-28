@@ -12,7 +12,8 @@
 #include "Scene/LevelUp.h"
 #include "Player/ReloadBar.h"
 #include "UI/UI.h"
-
+#include "Scene/Pause.h"
+#include "Scene/GameOver.h"
 
 using namespace sf;
 using namespace std;
@@ -164,6 +165,8 @@ int main()
 
 	Title title;
 	LevelUp levelup;
+	GameOver gameover;
+	Pause pause;
 	UI ui;
 	ReloadBar reloaing;
 
@@ -243,7 +246,7 @@ int main()
 		//world draw
 		//월드 
 
-
+		levelup.Draw(window);
 		window.setView(UiView);
 		ui.DrawUi(window);
 		//ui draw

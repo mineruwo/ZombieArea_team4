@@ -1,53 +1,105 @@
 #include "SceneMgr.h"
 
-
-
-SceneMgr::SceneMgr()
+SceneMgr::SceneMgr(RenderWindow& window)
+    : window(&window)
 {
-	bool titleOn = true;
-	bool lvUP = false;
-	bool pause = false;
-	bool gameover = false;
 }
 
-bool SceneMgr::sceneOper(const Event& event)
+SceneMgr::~SceneMgr()
 {
-	switch (event.type)
-	{
-	case Keyboard::Enter:
-		titleOn = false;
-		break;
-	case Keyboard::Num1:
-		lvUP = false;
-		//연사속도 증가
-		break;
-	case Keyboard::Num2:
-		lvUP = false;
-		//탄창수증가
-	case Keyboard::Num3:
-		lvUP = false;
-		//체력증가
-	case Keyboard::Num4:
-		lvUP = false;
-		//이동속도증가
-	case Keyboard::Num5:
-		lvUP = false;
-		//아이템 회복량 증가
-	case Keyboard::Num6:
-		lvUP = false;
-		//아이템 탄증가수 증가
-		break;
-	}
-	return;
 }
 
-void SceneMgr::sceneChange()
+void SceneMgr::sceneInitialize()
 {
+        switch (currscene)
+        {
+        case Scene::TITLE:
+            break;
+        case Scene::GAME:
+        //    scene = new GAME;
+            break;
+        case Scene::LEVELUP:
+            break;
+        case Scene::PAUSE:
+            break;
+        case Scene::GAMEOVER:
+            break;
+        }
+}
 
-	/*if (titleOn)
-	{
-		Title::Draw(RenderWindow& window)
-	}*/
+void SceneMgr::SceneUpdate()
+{
+    switch (currscene)
+    {
+    case Scene::TITLE:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    case Scene::GAME:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::P))
+        {
+            SceneChange(Scene::PAUSE);
+        }
+        break;
+    case Scene::LEVELUP:
+        SceneMgr::SceneDraw();
+        LevelUp::SelectUpgrade();
+        SceneChange(Scene::GAME);
+
+        break;
+    case Scene::PAUSE:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    case Scene::GAMEOVER:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    default:
+        break;
+    }
 
 }
+
+
+void SceneMgr::SceneChange(Scene id)
+{
+    currscene = id;
+}
+
+void SceneMgr::SceneDraw()
+{
+    switch (currscene)
+    {
+    case Scene::TITLE:
+    title.Draw(*window);
+        break;
+    case Scene::GAME:
+      //  Game::Draw(*window);
+        break;
+    case Scene::LEVELUP:
+        levelup.Draw(*window);
+        break;
+    case Scene::PAUSE:
+        pause.Draw(*window);
+        break;
+    case Scene::GAMEOVER:
+        gameover.Draw(*window);
+        break;
+    }
+
+}
+
+
+
 

@@ -17,9 +17,9 @@ LevelUp::LevelUp() :textureFileName("graphics/background.png")
 	Upgrade.setPosition(200, 300);// 1920 1080
 }
 
-void LevelUp::SelectUpgrade(const Event& event, Player& player)
+void LevelUp::SelectUpgrade( Player& player, PickUp& pickup)
 {
-	switch (event.type)
+	switch (Keyboard)
 	{
 	case Keyboard::Num1:
 		//연사속도 증가
@@ -33,8 +33,10 @@ void LevelUp::SelectUpgrade(const Event& event, Player& player)
 		player.UpgradeSpeed();
 		//이동속도증가
 	case Keyboard::Num5:
+		pickup.UpgradePickupHealth();
 		//아이템 회복량 증가
 	case Keyboard::Num6:
+		pickup.UpgradePickupAmmo();
 		//아이템 탄증가수 증가
 		break;
 	}
