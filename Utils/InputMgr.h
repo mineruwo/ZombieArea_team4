@@ -31,6 +31,7 @@ private:
 	static list<Keyboard::Key> downKeys;
 	static list<Keyboard::Key> ingKeys;
 	static list<Keyboard::Key> upKeys;
+	
 
 	static list<Mouse::Button> downButtons;
 	static list<Mouse::Button> ingButtons;

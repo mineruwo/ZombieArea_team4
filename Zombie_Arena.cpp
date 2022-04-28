@@ -8,8 +8,11 @@
 #include "Wall/Wall.h"
 #include "Bullet/Bullet.h"
 #include "Player/PickUp.h"
+#include "Scene/Title.h"
+#include "Scene/LevelUp.h"
 #include "Player/ReloadBar.h"
 #include "UI/UI.h"
+
 
 using namespace sf;
 using namespace std;
@@ -106,6 +109,7 @@ void CreateWalls(std::vector<Wall*>& walls, IntRect arena)
 
 int main()
 {
+	
 	TextureHolder textureHolder;
 	Vector2i resolution;
 
@@ -157,10 +161,14 @@ int main()
 	VertexArray tileMap;
 	CreateBackGround(tileMap, arena);
 
+
+	Title title;
+	LevelUp levelup;
 	UI ui;
 	ReloadBar reloaing;
 
 	//initialize 
+
 
 	int i = 0;
 	while (window.isOpen())
@@ -189,12 +197,14 @@ int main()
 			}
 		}
 
+		
+
 		spriteCrosshair.setPosition(InputMgr::GetMouseWolrdPosition());
 		mainView.setCenter(player.GetPosition());
 
 
 		InputMgr::Update(dt.asSeconds(), window, mainView);
-		player.Update(dt.asSeconds(), walls);
+		/*player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
 		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload());
 
@@ -205,15 +215,15 @@ int main()
 		{
 			zombie->Update(dt.asSeconds(), player.GetPosition());
 			zombie->UpdateCollision(player, playTime);
-			
 		}
 		ui.UpdateUi(player.GetCurrMag(),player.GetMaxMag(),player.GetTotalAmmo());
 
 		//Update
-
 		window.clear();
 
-		window.setView(mainView);
+		//title.Draw(window);
+		levelup.Draw(window);
+		/*window.setView(mainView);
 		window.draw(tileMap, &texBackground);
 
 		for (auto zombie : zombies)
@@ -222,13 +232,14 @@ int main()
 		}
 
 		player.Draw(window);
+
 		if (player.IsReload())
 		{
 			window.draw(reloaing.GetReloadBar());
 		}
 
 		window.draw(pickup.GetSprite());
-		window.draw(spriteCrosshair);
+		window.draw(spriteCrosshair);*/
 		//world draw
 		//월드 
 

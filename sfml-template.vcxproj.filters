@@ -20,8 +20,16 @@
     <Filter Include="Wall">
       <UniqueIdentifier>{21c67c6a-c424-424b-8123-6f20c0f325f7}</UniqueIdentifier>
     </Filter>
+
+    <Filter Include="SceneMgr">
+      <UniqueIdentifier>{c45eb47b-d4e3-4a16-a25c-f233c33c993c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{d92b7db3-9395-4bb9-aa3c-618e1768e167}</UniqueIdentifier>
+
     <Filter Include="UI">
       <UniqueIdentifier>{854bdda8-7c23-47c9-a457-202f8ad5260d}</UniqueIdentifier>
+      
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +58,28 @@
     <ClCompile Include="Player\PickUp.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+
+    <ClCompile Include="SceneMgr\SceneMgr.cpp">
+      <Filter>SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pause.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Title.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOver.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\LevelUp.cpp">
+      <Filter>Scene</Filter>
+
     <ClCompile Include="UI\UI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Player\ReloadBar.cpp">
       <Filter>Player</Filter>
+
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +107,22 @@
     <ClInclude Include="Player\PickUp.h">
       <Filter>Player</Filter>
     </ClInclude>
+
+    <ClInclude Include="SceneMgr\SceneMgr.h">
+      <Filter>SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\LevelUp.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Pause.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Title.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOver.h">
+      <Filter>Scene</Filter>
+
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
