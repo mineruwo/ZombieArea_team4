@@ -83,9 +83,15 @@ void InputMgr::ProcessInput(const Event& event)
 		upKeys.push_back(event.key.code);
 		break;
 	case Event::MouseButtonPressed:
-		downButtons.push_back(event.mouseButton.button);
+		if (!GetMouseButton(event.mouseButton.button))
+		{
+			downButtons.push_back(event.mouseButton.button);
+			ingButtons.push_back(event.mouseButton.button);
+		}
 		break;
 	case Event::MouseButtonReleased:
+		ingButtons.remove(event.mouseButton.button);
+		upButtons.push_back(event.mouseButton.button);
 		break;
 	default:
 		break;
@@ -219,10 +225,12 @@ bool InputMgr::GetMouseButtonDown(Mouse::Button button)
 
 bool InputMgr::GetMouseButton(Mouse::Button button)
 {
-	return false;
+	auto it = find(ingButtons.begin(), ingButtons.end(), button);
+	return it != ingButtons.end();
 }
 
 bool InputMgr::GetMouseButtonUp(Mouse::Button button)
 {
-	return false;
+	auto it = find(upButtons.begin(), upButtons.end(), button);
+	return it != upButtons.end();
 }

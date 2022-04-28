@@ -6,7 +6,8 @@
 std::vector<ZombieInfo> Zombie::zombieInfo;
 bool Zombie::isInitInfo = false;
 
-Zombie::Zombie():alive(true)
+Zombie::Zombie()
+	:alive(true), bloodSpawned(true)
 {
 	if (!isInitInfo)
 	{
@@ -18,6 +19,7 @@ Zombie::Zombie():alive(true)
 			info.speed = 40.f;
 			info.health = 5;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CHASER];
 			info.type = ZombieTypes::CHASER;
@@ -25,6 +27,7 @@ Zombie::Zombie():alive(true)
 			info.speed = 70.f;
 			info.health = 1;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CRAWLER];
 			info.type = ZombieTypes::CRAWLER;
@@ -36,14 +39,24 @@ Zombie::Zombie():alive(true)
 	}
 }
 
-bool Zombie::OnHitted()
+bool Zombie::OnHitted(float timeZomHit)
 {
-	std::cout << "hit" << std::endl;
-
-	//¿©±â¼­ Á×¾úÀ»¶§µµ Ã³¸® ÇØ¾ßÇÔ ¿¹¸¦ µé¸é ±× ÀÚ¸®¿¡ ÇÍÀÚ±¹ ¸¸µå´Â°Å
-
-	// ÇÇÀÚ ¸Ô±¸ ½Í´Ù
-
+	//std::cout << "hit" << std::endl;
+	//ì—¬ê¸°ì„œ ì£½ì—ˆì„ë•Œë„ ì²˜ë¦¬ í•´ì•¼í•¨ ì˜ˆë¥¼ ë“¤ë©´ ê·¸ ìžë¦¬ì— í•ìžêµ­ ë§Œë“œëŠ”ê±°
+	//ì¼ì •ì‹œê°„ ì§€ë‚œ í›„ ì‚¬ë¼ì§€ê¸°		
+	health--;	
+	if (health < 0)
+	{		
+		alive = false; //íšŒì „
+		speed = 0; //ì›€ì§ìž„		
+		
+		timer -= timeZomHit;
+		if (timer < 0.f)
+		{
+			Dead(!bloodSpawned);
+		}
+		return true;							
+	}
 	return false;
 }
 
@@ -52,8 +65,23 @@ bool Zombie::IsALive()
 	return alive;
 }
 
+void Zombie::Dead(bool spawn)
+{
+	if (bloodSpawned)
+	{
+		timer = START_BLOOD;
+		sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
+		isInitInfo = false;
+	}
+	else
+	{
+		timer = START_WAIT_BLOOD;
+	}
+}
+
 void Zombie::Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wall*> walls)
 {
+
 	auto& info = zombieInfo[(int)type];
 	sprite.setTexture(TextureHolder::GetTexture(info.textureFileName));
 	speed = info.speed;
@@ -100,8 +128,7 @@ void Zombie::Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wa
 
 void Zombie::Update(float dt, Vector2f playerPosition)
 {
-	// ÀÌµ¿
-	
+	// ì´ë™	
 	Vector2f dir;
 
 	dir = playerPosition - position;
@@ -109,10 +136,14 @@ void Zombie::Update(float dt, Vector2f playerPosition)
 	position += Utils::Normalize(dir) * speed * dt;
 	sprite.setPosition(position);
 
-	// È¸Àü
-	float radian = atan2(dir.y, dir.x);
-	float dgree = radian * 180.f / 3.141592;
-	sprite.setRotation(dgree);
+	if (alive == true)
+	{
+		// íšŒì „
+		float radian = atan2(dir.y, dir.x);
+		float dgree = radian * 180.f / 3.141592;
+		sprite.setRotation(dgree);
+	}	
+
 }
 
 bool Zombie::UpdateCollision(Player& player, Time time)
@@ -122,7 +153,6 @@ bool Zombie::UpdateCollision(Player& player, Time time)
 		player.OnHitted(time);
 		return true;
 	}
-
 	return false;
 }
 

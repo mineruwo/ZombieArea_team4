@@ -15,9 +15,15 @@ class Player
 {
 private:
 	const float START_SPEED = 200;
+	const float START_SHOTRATE = 0.1f;
+	//second 단위에오
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 1000;
 	//밀리세컨드라 1000이 1초인점 감안해야해요.
+
+	const int START_TOTAL_AMMO = 300;
+	const int START_MAX_MAGAZINE = 30;
+	const int START_RELOADING_TIME = 3;
 
 	Vector2f position;
 
@@ -31,6 +37,15 @@ private:
 
 	Vector2f direction;
 	float speed;
+	float shootRate;
+	float timer;
+
+	int MaxMagazine;
+	int currMagazine;
+	int totalAmmo;
+	float reloadingTime;
+	float reloadtimer;
+	bool isReload;
 
 	int health;
 	int maxHealth;
@@ -43,6 +58,7 @@ private:
 	std::list<Bullet*> useBullets;
 
 	float distanceToMuzzle;
+
 
 
 public:
@@ -66,10 +82,20 @@ public:
 	void Draw(RenderWindow& window);
 	void GetHealthItem(int amount);
 
-	bool UpdateCollision(const std::vector<Zombie*>& zombies);
+	bool UpdateCollision(const std::vector<Zombie*>& zombies, float time);
 	bool UpdateCollisionPickup(const std::list<PickUp*>& items);
 
 	void UpgradeSpeed();
 	void UpgradeMaxHealth();
+
+	int GetCurrMag();
+	int GetMaxMag();
+	int GetTotalAmmo();
+
+	void Reload();
+	bool IsReload();
+
+	
+
 };
 

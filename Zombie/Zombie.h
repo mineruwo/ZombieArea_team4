@@ -13,6 +13,7 @@ enum class ZombieTypes
 	COUNT,
 };
 
+
 struct ZombieInfo
 {
 	ZombieTypes type;
@@ -25,11 +26,17 @@ class Zombie
 {
 private:
 	const float BLOATER_SPEED = 40;
+	const float START_BLOOD = 5.f;
+	const float START_WAIT_BLOOD = 10.f;
+
 	Vector2f position;
 	Sprite sprite;
 
 	float speed;
 	int health;
+
+	float timer;
+	bool bloodSpawned;
 
 	static std::vector<ZombieInfo> zombieInfo;
 	static bool isInitInfo;
@@ -38,8 +45,9 @@ private:
 public:
 	Zombie();
 
-	bool OnHitted();
+	bool OnHitted(float timeZomHit);
 	bool IsALive();
+	void Dead(bool spawn);
 
 	void Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wall*> walls);
 	void Update(float dt, Vector2f playerPosition);

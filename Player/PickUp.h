@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Utils/TextureHolder.h"
 #include "../Utils/Utils.h"
+#include "../Player/Player.h"
 #include <string>
 using namespace sf;
 using namespace std;
@@ -31,6 +32,10 @@ private:
 
 	float timer;
 
+	int totalAmmo;
+
+	int totalHealth;
+
 public:
 	PickUp(PickupType type);
 
@@ -42,6 +47,8 @@ public:
 	void SetArena(IntRect rect);
 
 	bool IsSpwawned();
+
+	void PlayerUpdate();
 
 	Sprite GetSprite();
 	FloatRect GetGlobalBounds();
