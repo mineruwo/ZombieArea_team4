@@ -94,5 +94,8 @@ public:
 
 	void Reload();
 	bool IsReload();
+
+	
+
 };
 

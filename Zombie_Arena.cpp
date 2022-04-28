@@ -8,6 +8,7 @@
 #include "Wall/Wall.h"
 #include "Bullet/Bullet.h"
 #include "Player/PickUp.h"
+#include "Player/ReloadBar.h"
 #include "UI/UI.h"
 
 using namespace sf;
@@ -147,6 +148,7 @@ int main()
 
 	std::list<PickUp*> items;
 	items.push_back(&pickup);
+	
 
 	Texture& texBackground = TextureHolder::GetTexture("graphics/background_sheet.png");
 
@@ -156,6 +158,7 @@ int main()
 	CreateBackGround(tileMap, arena);
 
 	UI ui;
+	ReloadBar reloaing;
 
 	//initialize 
 
@@ -169,6 +172,7 @@ int main()
 
 		Event event;
 
+		
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
@@ -192,7 +196,7 @@ int main()
 		InputMgr::Update(dt.asSeconds(), window, mainView);
 		player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
-
+		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload());
 
 		player.UpdateCollision(zombies);
 		player.UpdateCollisionPickup(items);
@@ -218,6 +222,11 @@ int main()
 		}
 
 		player.Draw(window);
+		if (player.IsReload())
+		{
+			window.draw(reloaing.GetReloadBar());
+		}
+
 		window.draw(pickup.GetSprite());
 		window.draw(spriteCrosshair);
 		//world draw

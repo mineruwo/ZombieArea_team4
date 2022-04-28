@@ -76,7 +76,6 @@ bool Player::OnHitted(Time timeHit)
 	{
 		lastHit = timeHit;
 		health -= 10;
-		std::cout << timeHit.asSeconds() << endl;
 
 		return true;
 	}
@@ -336,4 +335,10 @@ bool Player::IsReload()
 {
 	return isReload;
 }
+
+int Player::AddAmmo()
+{
+	totalAmmo += 20;
+}
+
 
