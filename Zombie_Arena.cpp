@@ -8,6 +8,8 @@
 #include "Wall/Wall.h"
 #include "Bullet/Bullet.h"
 #include "Player/PickUp.h"
+#include "Scene/Title.h"
+#include "Scene/LevelUp.h"
 
 using namespace sf;
 using namespace std;
@@ -104,6 +106,7 @@ void CreateWalls(std::vector<Wall*>& walls, IntRect arena)
 
 int main()
 {
+	
 	TextureHolder textureHolder;
 	Vector2i resolution;
 
@@ -154,6 +157,9 @@ int main()
 	VertexArray tileMap;
 	CreateBackGround(tileMap, arena);
 
+	Title title;
+	LevelUp levelup;
+
 	int i = 0;
 	while (window.isOpen())
 	{
@@ -180,12 +186,14 @@ int main()
 			}
 		}
 
+		
+
 		spriteCrosshair.setPosition(InputMgr::GetMouseWolrdPosition());
 		mainView.setCenter(player.GetPosition());
 
 
 		InputMgr::Update(dt.asSeconds(), window, mainView);
-		player.Update(dt.asSeconds(), walls);
+		/*player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
 
 
@@ -197,10 +205,12 @@ int main()
 			zombie->Update(dt.asSeconds(), player.GetPosition());
 			zombie->UpdateCollision(player, playTime);
 			
-		}
+		}*/
 		window.clear();
 
-		window.setView(mainView);
+		//title.Draw(window);
+		levelup.Draw(window);
+		/*window.setView(mainView);
 		window.draw(tileMap, &texBackground);
 
 		for (auto zombie : zombies)
@@ -209,8 +219,9 @@ int main()
 		}
 
 		player.Draw(window);
+
 		window.draw(pickup.GetSprite());
-		window.draw(spriteCrosshair);
+		window.draw(spriteCrosshair);*/
 		//world draw
 		//월드 
 
