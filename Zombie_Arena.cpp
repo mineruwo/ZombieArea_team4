@@ -189,7 +189,7 @@ int main()
 		pickup.Update(dt.asSeconds());
 
 
-		player.UpdateCollision(zombies, dt);
+		player.UpdateCollision(zombies, dt.asMilliseconds());
 		player.UpdateCollisionPickup(items);
 
 		for (auto zombie : zombies)

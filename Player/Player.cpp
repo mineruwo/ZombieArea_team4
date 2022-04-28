@@ -76,8 +76,7 @@ bool Player::OnHitted(Time timeHit)
 	{
 		lastHit = timeHit;
 		health -= 10;
-		std::cout << timeHit.asSeconds() << endl;
-
+		//std::cout << timeHit.asSeconds() << endl;
 		return true;
 	}
 	return false;
@@ -226,7 +225,7 @@ void Player::GetHealthItem(int amount)
 	}
 }
 
-bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, Time time)
+bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, float time)
 {
 	bool isCollided = false;
 	for (auto bullet : useBullets)
@@ -251,8 +250,7 @@ bool Player::UpdateCollisionPickup(const std::list<PickUp*>& items)
 		{
 			item->GotIt();
 			isCollided = true;
-		}
-		
+		}		
 	}
 
 	return isCollided;

@@ -66,7 +66,7 @@ public:
 	void Draw(RenderWindow& window);
 	void GetHealthItem(int amount);
 
-	bool UpdateCollision(const std::vector<Zombie*>& zombies, Time time);
+	bool UpdateCollision(const std::vector<Zombie*>& zombies, float time);
 	bool UpdateCollisionPickup(const std::list<PickUp*>& items);
 
 	void UpgradeSpeed();

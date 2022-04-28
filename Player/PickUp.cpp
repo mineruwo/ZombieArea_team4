@@ -46,8 +46,6 @@ void PickUp::Spawn(bool spawn)
 
 		int y = Utils::RandomRange(arena.top, arena.top + arena.height);
 
-		//이거 아무리봐도 이상헌거 같음.
-
 		sprite.setPosition(Vector2f(x, y));
 	}
 	else
@@ -56,15 +54,22 @@ void PickUp::Spawn(bool spawn)
 	}
 }
 
+//totalAmmo;
 int PickUp::GotIt()
 {
 	switch (type)
 	{
-	case PickupType::AMMO:
-		std::cout << "Ammo" << std::endl;
+	case PickupType::AMMO: // 총알
+		//총알을 먹은 갯수 만큼 증가
+		//totalAmmo++;
+
+
+
 		break;
 	case PickupType::HEALTH:
-		std::cout << "HEALTH" << std::endl;
+		//구급상자를 먹은 갯수 만큼 증가
+		//totalHealth++;
+		
 		break;
 	default:
 		break;
@@ -83,6 +88,18 @@ bool PickUp::IsSpwawned()
 {
 	return spawned;
 }
+
+//void PickUp::AddAmmo()
+//{
+//	PickupType::AMMO;
+//	value += AMMO_START_VALUE;
+//}
+//
+//void PickUp::AddPickup()
+//{
+//
+//
+//}
 
 Sprite PickUp::GetSprite()
 {
