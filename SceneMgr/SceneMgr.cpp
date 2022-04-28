@@ -1,7 +1,5 @@
 #include "SceneMgr.h"
 
-
-
 SceneMgr::SceneMgr()
 {
 	bool titleOn = true;
@@ -38,8 +36,10 @@ bool SceneMgr::sceneOper(const Event& event)
 		//아이템 탄증가수 증가
 		break;
 	}
-	return;
+	return true;
 }
+
+
 
 void SceneMgr::sceneChange()
 {
