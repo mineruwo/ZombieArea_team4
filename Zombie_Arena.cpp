@@ -109,7 +109,7 @@ void CreateWalls(std::vector<Wall*>& walls, IntRect arena)
 
 int main()
 {
-	
+
 	TextureHolder textureHolder;
 	Vector2i resolution;
 
@@ -140,8 +140,9 @@ int main()
 	Player player;
 	player.Spawn(arena, resolution, 0.f);
 
+	int zombieCount = 20;
 	std::vector<Zombie*> zombies;
-	CreateZombies(zombies, 200, arena, walls);
+	CreateZombies(zombies, zombieCount, arena, walls);
 
 	Clock clock;
 	Time playTime;
@@ -162,13 +163,16 @@ int main()
 	CreateBackGround(tileMap, arena);
 
 
-	Title title;
-	LevelUp levelup;
+	/*Title title;
+	LevelUp levelup;*/
 	UI ui;
 	ReloadBar reloaing;
 
 	//initialize 
 
+	int waves = 0;
+	int score = 0;
+	int hiScore = 0;
 
 	int i = 0;
 	while (window.isOpen())
@@ -197,16 +201,13 @@ int main()
 			}
 		}
 
-		
-
 		spriteCrosshair.setPosition(InputMgr::GetMouseWolrdPosition());
 		mainView.setCenter(player.GetPosition());
 
-
 		InputMgr::Update(dt.asSeconds(), window, mainView);
-		/*player.Update(dt.asSeconds(), walls);
+		player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
-		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload());
+		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload(),player.GetMaxReload(),player.GetCurrReload());
 
 		player.UpdateCollision(zombies, dt.asMilliseconds());
 		player.UpdateCollisionPickup(items);
@@ -216,14 +217,14 @@ int main()
 			zombie->Update(dt.asSeconds(), player.GetPosition());
 			zombie->UpdateCollision(player, playTime);
 		}
-		ui.UpdateUi(player.GetCurrMag(),player.GetMaxMag(),player.GetTotalAmmo());
+		ui.UpdateUi(player.GetCurrMag(),player.GetMaxMag(),player.GetTotalAmmo(), waves, zombieCount, score, hiScore, player.GetMaxHealth(),player.GetHealth());
 
 		//Update
 		window.clear();
 
 		//title.Draw(window);
-		levelup.Draw(window);
-		/*window.setView(mainView);
+		/*levelup.Draw(window);*/
+		window.setView(mainView);
 		window.draw(tileMap, &texBackground);
 
 		for (auto zombie : zombies)
@@ -239,7 +240,7 @@ int main()
 		}
 
 		window.draw(pickup.GetSprite());
-		window.draw(spriteCrosshair);*/
+		window.draw(spriteCrosshair);
 		//world draw
 		//월드 
 

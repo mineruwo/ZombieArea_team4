@@ -11,7 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f),reloadingTime(START_RELOADING_TIME)
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f), reloadingTime(START_RELOADING_TIME), currReload(reloadingTime)
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -71,11 +71,19 @@ void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
 
 bool Player::OnHitted(Time timeHit)
 {
-	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs)
+	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs && !isImuune)
 	{
 		lastHit = timeHit;
-		health -= 10;
-		//std::cout << timeHit.asSeconds() << endl;
+		if (health > 0)
+		{
+			health -= 10;
+		}
+		else
+		{
+			health = 0;
+		}
+		sprite.setTexture(TextureHolder::GetTexture("graphics/playerDameged.png"));
+		isImuune = true;
 
 		return true;
 	}
@@ -129,6 +137,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setPosition(position);
 
 
+
 	//충돌
 	for (auto v : walls)
 	{
@@ -178,13 +187,14 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setRotation(dgree);
 
 
+
 	timer += dt;
 	if (isReload)
 	{
 		reloadtimer += dt;
 	}
 
-	if (reloadingTime < reloadtimer)
+	if (currReload < reloadtimer)
 	{
 		isReload = false;
 	}
@@ -201,13 +211,30 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 	if (InputMgr::GetKeyDown(Keyboard::R))
 	{
-		if (!isReload)
+		if (!isReload && totalAmmo > 0)
 		{
 			Reload();
 			isReload = true;
 			reloadtimer = 0.f;
 		}
-	
+	}
+
+	if (InputMgr::GetKeyDown(Keyboard::X))
+	{
+		health = maxHealth;
+
+	}
+
+	if (isImuune)
+	{
+		immuneTimer += dt;
+	}
+
+	if (immuneTimer * 1000 > immuneMs && isImuune)
+	{
+	sprite.setTexture(TextureHolder::GetTexture("graphics/player.png"));
+		isImuune = false;
+		immuneTimer = 0.f;
 	}
 
 	auto it = useBullets.begin();
@@ -329,14 +356,30 @@ void Player::Reload()
 	}
 }
 
-bool Player::IsReload()
+bool& Player::IsReload()
 {
 	return isReload;
 }
 
-int Player::AddAmmo()
+int Player::GetHealth()
 {
-	totalAmmo += 20;
+	return health;
 }
+
+int Player::GetMaxHealth()
+{
+	return maxHealth;
+}
+
+float Player::GetMaxReload()
+{
+	return reloadingTime;
+}
+
+float Player::GetCurrReload()
+{
+	return currReload;
+}
+
 
 
