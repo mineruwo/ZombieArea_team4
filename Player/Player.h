@@ -16,10 +16,10 @@ class Player
 private:
 	const float START_SPEED = 200;
 	const float START_SHOTRATE = 0.1f;
-	//second ´ÜÀ§¿¡¿À
+	//second ë‹¨ìœ„ì—ì˜¤
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 3000;
-	//¹Ğ¸®¼¼ÄÁµå¶ó 1000ÀÌ 1ÃÊÀÎÁ¡ °¨¾ÈÇØ¾ßÇØ¿ä.
+	//ë°€ë¦¬ì„¸ì»¨ë“œë¼ 1000ì´ 1ì´ˆì¸ì  ê°ì•ˆí•´ì•¼í•´ìš”.
 
 	const int START_TOTAL_AMMO = 300;
 	const int START_MAX_MAGAZINE = 30;
@@ -35,6 +35,8 @@ private:
 
 	int tileSize;
 
+	Player& player;
+
 	Vector2f direction;
 	float speed;
 	float shootRate;
@@ -42,7 +44,8 @@ private:
 
 	int MaxMagazine;
 	int currMagazine;
-	int totalAmmo;
+
+	int totalAmmo; //ì´ íƒ„ì°½ ìˆ˜
 
 	float reloadingTime;
 	float currReload;
@@ -90,12 +93,15 @@ public:
 	void UpgradeSpeed();
 	void UpgradeMaxHealth();
 
+
 	int GetCurrMag();
 	int GetMaxMag();
 	int GetTotalAmmo();
+	void GetAmmoItem(int addAmount);
 
 	int GetHealth();
 	int GetMaxHealth();
+
 
 	void Reload();
 	float GetMaxReload();

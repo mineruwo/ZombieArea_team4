@@ -223,7 +223,9 @@ int main()
 		window.clear();
 
 		//title.Draw(window);
+
 		/*levelup.Draw(window);*/
+
 		window.setView(mainView);
 		window.draw(tileMap, &texBackground);
 
@@ -243,7 +245,6 @@ int main()
 		window.draw(spriteCrosshair);
 		//world draw
 		//월드 
-
 
 		window.setView(UiView);
 		ui.DrawUi(window);
