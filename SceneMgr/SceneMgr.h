@@ -1,6 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Scene/Title.h"
+#include "../Scene/Pause.h"
+#include "../Scene/GameOver.h"
+#include "../Scene/LevelUp.h"
+#include "../Utils/InputMgr.h"
 
 using namespace sf;
 
@@ -17,18 +21,27 @@ enum class Scene
 class SceneMgr
 {
 private:
-
 	Scene currscene;
-	bool titleOn;
-	bool lvUP;
-	bool pause;
-	bool gameover;
+	RenderWindow* window;
+
+	Title title;
+	// Game game;
+	LevelUp levelup;
+	Pause pause;
+	GameOver gameover;
 
 
 public:
-	SceneMgr();
-	bool sceneOper(const Event& event);
-	void sceneChange(Scene id);
+
+
+	SceneMgr(RenderWindow& window);
+	~SceneMgr();
+
+	void sceneInitialize();
+	void SceneUpdate(); // Ű���� �����ϴ°� switch case �ۼ�
+	void SceneChange(Scene id);
+	void SceneDraw(); //
+
 
 };
 

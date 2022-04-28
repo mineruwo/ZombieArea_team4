@@ -105,7 +105,7 @@ void PickUp::GotIt(Player* player)
 	}
 	//return value;
 
-	//Àú Ãâ·Â¹® ±¸°£¿£ ½ÇÁ¦·Î ÇØ¾ßÇÏ´Â ÀÏµé ¸®ÅÏÇØÁà¾ß ÇØ.
+	//ì € ì¶œë ¥ë¬¸ êµ¬ê°„ì—” ì‹¤ì œë¡œ í•´ì•¼í•˜ëŠ” ì¼ë“¤ ë¦¬í„´í•´ì¤˜ì•¼ í•´.
 }
 
 void PickUp::SetArena(IntRect rect)
@@ -128,4 +128,14 @@ FloatRect PickUp::GetGlobalBounds()
 	return sprite.getGlobalBounds();
 }
 
+
+void PickUp::UpgradePickupAmmo()
+{
+	totalAmmo += 5;
+}
+
+void PickUp::UpgradePickupHealth()
+{
+	totalHealth += 10;
+}
 

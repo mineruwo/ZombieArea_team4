@@ -369,6 +369,7 @@ int Player::GetHealth()
 	return health;
 }
 
+
 int Player::GetMaxHealth()
 {
 	return maxHealth;

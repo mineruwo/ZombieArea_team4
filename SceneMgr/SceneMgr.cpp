@@ -1,53 +1,110 @@
 #include "SceneMgr.h"
 
-SceneMgr::SceneMgr()
+
+SceneMgr::SceneMgr(RenderWindow& window)
+    : window(&window)
 {
+}
+
+SceneMgr::~SceneMgr()
+{
+}
+
+void SceneMgr::sceneInitialize()
+{
+        switch (currscene)
+        {
+        case Scene::TITLE:
+            break;
+        case Scene::GAME:
+        //    scene = new GAME;
+            break;
+        case Scene::LEVELUP:
+            break;
+        case Scene::PAUSE:
+            break;
+        case Scene::GAMEOVER:
+            break;
+        }
+}
+
+void SceneMgr::SceneUpdate()
+{
+    switch (currscene)
+    {
+    case Scene::TITLE:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    case Scene::GAME:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::P))
+        {
+            SceneChange(Scene::PAUSE);
+        }
+        break;
+    case Scene::LEVELUP:
+        SceneMgr::SceneDraw();
+        LevelUp::SelectUpgrade();
+        SceneChange(Scene::GAME);
+
+        break;
+    case Scene::PAUSE:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    case Scene::GAMEOVER:
+        SceneMgr::SceneDraw();
+        if (InputMgr::GetKeyDown(Keyboard::Enter))
+        {
+            SceneChange(Scene::GAME);
+        }
+        break;
+    default:
+        break;
+    }
 
 }
 
 
-//bool SceneMgr::sceneOper(const Event& event)
-//{
-//	switch (event.type)
-//	{
-//	case Keyboard::Enter:
-//		titleOn = false;
-//		break;
-//	case Keyboard::Num1:
-//		lvUP = false;
-//		//����ӵ� ��
-//		break;
-//	case Keyboard::Num2:
-//		lvUP = false;
-//		//źâ����
-//	case Keyboard::Num3:
-//		lvUP = false;
-//		//ü����
-//	case Keyboard::Num4:
-//		lvUP = false;
-//		//�̵��ӵ���
-//	case Keyboard::Num5:
-//		lvUP = false;
-//		//������ ȸ���� ��
-//	case Keyboard::Num6:
-//		lvUP = false;
-//		//������ ź��� ��
-//		break;
-//	}
-//	return;
-//}
-
-bool SceneMgr::sceneOper(const Event& event)
+void SceneMgr::SceneChange(Scene id)
 {
-
-	return true;
+    currscene = id;
 }
 
-
+void SceneMgr::SceneDraw()
+{
+    switch (currscene)
+    {
+    case Scene::TITLE:
+    title.Draw(*window);
+        break;
+    case Scene::GAME:
+      //  Game::Draw(*window);
+        break;
+    case Scene::LEVELUP:
+        levelup.Draw(*window);
+        break;
+    case Scene::PAUSE:
+        pause.Draw(*window);
+        break;
+    case Scene::GAMEOVER:
+        gameover.Draw(*window);
+        break;
+    }
 
 
 void SceneMgr::sceneChange(Scene id)
 {
 	currscene = id;
 }
+
+
+
 

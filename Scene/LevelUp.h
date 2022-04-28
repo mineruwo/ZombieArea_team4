@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Player/Player.h"
+#include "../Player/PickUp.h"
 
 using namespace sf;
 
@@ -20,7 +21,7 @@ private:
 public:
 
 	LevelUp();
-	void SelectUpgrade(const Event& event ,Player& player);
+	void SelectUpgrade(Player& player, PickUp& pickup);
 	void Draw(RenderWindow& window);
 
 

@@ -53,6 +53,10 @@ public:
 	Sprite GetSprite();
 	FloatRect GetGlobalBounds();
 
+	void UpgradePickupAmmo();
+	void UpgradePickupHealth();
+
+
 
 };
 

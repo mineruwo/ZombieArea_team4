@@ -12,7 +12,8 @@
 #include "Scene/LevelUp.h"
 #include "Player/ReloadBar.h"
 #include "UI/UI.h"
-
+#include "Scene/Pause.h"
+#include "Scene/GameOver.h"
 
 using namespace sf;
 using namespace std;
@@ -162,9 +163,6 @@ int main()
 	VertexArray tileMap;
 	CreateBackGround(tileMap, arena);
 
-
-	/*Title title;
-	LevelUp levelup;*/
 	UI ui;
 	ReloadBar reloaing;
 
@@ -245,6 +243,7 @@ int main()
 		window.draw(spriteCrosshair);
 		//world draw
 		//월드 
+
 
 		window.setView(UiView);
 		ui.DrawUi(window);
