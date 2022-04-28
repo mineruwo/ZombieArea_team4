@@ -18,6 +18,7 @@ Zombie::Zombie():alive(true)
 			info.speed = 40.f;
 			info.health = 5;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CHASER];
 			info.type = ZombieTypes::CHASER;
@@ -25,6 +26,7 @@ Zombie::Zombie():alive(true)
 			info.speed = 70.f;
 			info.health = 1;
 		}
+
 		{
 			auto& info = zombieInfo[(int)ZombieTypes::CRAWLER];
 			info.type = ZombieTypes::CRAWLER;
@@ -110,6 +112,10 @@ void Zombie::Update(float dt, Vector2f playerPosition)
 	sprite.setPosition(position);
 
 	// È¸Àü
+	if (alive == true)
+	{
+
+	}
 	float radian = atan2(dir.y, dir.x);
 	float dgree = radian * 180.f / 3.141592;
 	sprite.setRotation(dgree);
