@@ -71,15 +71,14 @@ void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
 
 bool Player::OnHitted(Time timeHit)
 {
-
 	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs)
 	{
 		lastHit = timeHit;
 		health -= 10;
+		//std::cout << timeHit.asSeconds() << endl;
 
 		return true;
 	}
-
 	return false;
 }
 
@@ -115,7 +114,7 @@ int Player::GetHealth() const
 
 void Player::Update(float dt, std::vector <Wall*> walls)
 {
-	// ÀÌµ¿
+	// ì´ë™
 	float h = InputMgr::GetAxis(Axis::Horizontal);
 	float v= InputMgr::GetAxis(Axis::Vertical);
 	Vector2f dir(h, v);
@@ -130,7 +129,7 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setPosition(position);
 
 
-	//Ãæµ¹
+	//ì¶©ëŒ
 	for (auto v : walls)
 	{
 		if (sprite.getGlobalBounds().intersects(v->GetWallRect()))
@@ -167,9 +166,9 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 			sprite.setPosition(position);
 		}
 	}
-	//¾ç½É»ó ´Ù¸¥ ¹öÀüÀ¸·Î ¸¸µé¾îºÁ¾ß°Ú´Ù.
+	//ì–‘ì‹¬ìƒ ë‹¤ë¥¸ ë²„ì „ìœ¼ë¡œ ë§Œë“¤ì–´ë´ì•¼ê² ë‹¤.
 
-	// È¸Àü
+	// íšŒì „
 	Vector2i mousePos = InputMgr::GetMousePosition();
 	Vector2i mouseDir;
 	mouseDir.x = mousePos.x - resolution.x * 0.5f;
@@ -252,12 +251,12 @@ void Player::GetHealthItem(int amount)
 	}
 }
 
-bool Player::UpdateCollision(const std::vector<Zombie*>& zombies)
+bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, float time)
 {
 	bool isCollided = false;
 	for (auto bullet : useBullets)
 	{
-		if (bullet->UpdateCollision(zombies))
+		if (bullet->UpdateCollision(zombies, time))
 		{
 			isCollided = true;
 		}
@@ -277,8 +276,7 @@ bool Player::UpdateCollisionPickup(const std::list<PickUp*>& items)
 		{
 			item->GotIt();
 			isCollided = true;
-		}
-		
+		}		
 	}
 
 	return isCollided;
@@ -321,7 +319,7 @@ void Player::Reload()
 	{
 		if (totalAmmo == 0)
 		{
-			//ÃÑ¾ËÀÌ ¾ø´Â°ÍÀ» Ç¥ÇöÇÏÀÚ.
+			//ì´ì•Œì´ ì—†ëŠ”ê²ƒì„ í‘œí˜„í•˜ì.
 		}
 		else
 		{

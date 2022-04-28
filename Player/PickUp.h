@@ -32,6 +32,10 @@ private:
 
 	float timer;
 
+	int totalAmmo;
+
+	int totalHealth;
+
 public:
 	PickUp(PickupType type);
 
@@ -43,6 +47,8 @@ public:
 	void SetArena(IntRect rect);
 
 	bool IsSpwawned();
+
+	void PlayerUpdate();
 
 	Sprite GetSprite();
 	FloatRect GetGlobalBounds();
