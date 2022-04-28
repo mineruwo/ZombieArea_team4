@@ -204,7 +204,7 @@ int main()
 
 
 		InputMgr::Update(dt.asSeconds(), window, mainView);
-		/*player.Update(dt.asSeconds(), walls);
+		player.Update(dt.asSeconds(), walls);
 		pickup.Update(dt.asSeconds());
 		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload());
 
@@ -223,7 +223,7 @@ int main()
 
 		//title.Draw(window);
 		levelup.Draw(window);
-		/*window.setView(mainView);
+		window.setView(mainView);
 		window.draw(tileMap, &texBackground);
 
 		for (auto zombie : zombies)
@@ -239,10 +239,9 @@ int main()
 		}
 
 		window.draw(pickup.GetSprite());
-		window.draw(spriteCrosshair);*/
+		window.draw(spriteCrosshair);
 		//world draw
 		//월드 
-
 
 		window.setView(UiView);
 		ui.DrawUi(window);

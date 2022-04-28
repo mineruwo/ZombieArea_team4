@@ -35,6 +35,8 @@ private:
 
 	int tileSize;
 
+	Player& player;
+
 	Vector2f direction;
 	float speed;
 	float shootRate;
@@ -42,7 +44,7 @@ private:
 
 	int MaxMagazine;
 	int currMagazine;
-	int totalAmmo;
+	int totalAmmo; //ÃÑ ÅºÃ¢ ¼ö
 	float reloadingTime;
 	float reloadtimer;
 	bool isReload;
@@ -88,14 +90,15 @@ public:
 	void UpgradeSpeed();
 	void UpgradeMaxHealth();
 
+
 	int GetCurrMag();
 	int GetMaxMag();
 	int GetTotalAmmo();
+	void GetAmmoItem(int addAmount);
 
 	void Reload();
 	bool IsReload();
 
-	
 
 };
 

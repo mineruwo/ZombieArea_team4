@@ -32,9 +32,8 @@ private:
 
 	float timer;
 
-	int totalAmmo;
+	int amount;
 
-	int totalHealth;
 
 public:
 	PickUp(PickupType type);
@@ -42,16 +41,18 @@ public:
 	void Update(float dt);
 
 	void Spawn(bool spawn);
-	int GotIt();
+
+	std::vector <Wall*> walls;
+
+	void GotIt(Player* player);
 
 	void SetArena(IntRect rect);
 
 	bool IsSpwawned();
 
-	void PlayerUpdate();
-
 	Sprite GetSprite();
 	FloatRect GetGlobalBounds();
+
 
 };
 
