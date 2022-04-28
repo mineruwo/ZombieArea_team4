@@ -30,8 +30,6 @@ private:
 	Pause pause;
 	GameOver gameover;
 
-	
-
 
 public:
 
@@ -40,9 +38,10 @@ public:
 	~SceneMgr();
 
 	void sceneInitialize();
-	void SceneUpdate(); // Å°°ª¿¡ ¹ÝÀÀÇÏ´Â°Í switch case ÀÛ¼º
+	void SceneUpdate(); // Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½ switch case ï¿½Û¼ï¿½
 	void SceneChange(Scene id);
 	void SceneDraw(); //
+
 
 };
 

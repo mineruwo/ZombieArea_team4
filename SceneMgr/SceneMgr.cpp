@@ -1,5 +1,6 @@
 #include "SceneMgr.h"
 
+
 SceneMgr::SceneMgr(RenderWindow& window)
     : window(&window)
 {
@@ -98,6 +99,10 @@ void SceneMgr::SceneDraw()
         break;
     }
 
+
+void SceneMgr::sceneChange(Scene id)
+{
+	currscene = id;
 }
 
 

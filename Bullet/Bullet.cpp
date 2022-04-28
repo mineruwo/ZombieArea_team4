@@ -60,7 +60,7 @@ bool Bullet::UpdateCollision(const std::vector<Zombie*>& zombies, float time)
 		{
 			if (bounds.intersects(zombie->GetGlobalBound()))
 			{
-				zombie->OnHitted(time);
+				zombie->OnHitted(time, demage);
 				Stop();
 
 				return true;

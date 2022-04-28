@@ -11,7 +11,11 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f),reloadingTime(START_RELOADING_TIME)
+
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), 
+	texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), 
+	reloadtimer(0.f),reloadingTime(START_RELOADING_TIME),currReload(reloadingTime)
+
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -53,9 +57,7 @@ void Player::Shoot(Vector2f dir)
 	unuseBullets.pop_front();
 
 	useBullets.push_back(bullet);
-	bullet->Shoot(spawnPos, dir);
-
-	
+	bullet->Shoot(spawnPos, dir);	
 }
 
 void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
@@ -71,12 +73,20 @@ void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
 
 bool Player::OnHitted(Time timeHit)
 {
-	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs)
+	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs && !isImuune)
 	{
 		lastHit = timeHit;
-		health -= 10;
-		//std::cout << timeHit.asSeconds() << endl;
 
+		if (health > 0)
+		{
+			health -= 10;
+		}
+		else
+		{
+			health = 0;
+		}
+		sprite.setTexture(TextureHolder::GetTexture("graphics/playerDameged.png"));
+		isImuune = true;
 		return true;
 	}
 	return false;
@@ -114,7 +124,7 @@ int Player::GetHealth() const
 
 void Player::Update(float dt, std::vector <Wall*> walls)
 {
-	// 이동
+
 	float h = InputMgr::GetAxis(Axis::Horizontal);
 	float v= InputMgr::GetAxis(Axis::Vertical);
 	Vector2f dir(h, v);
@@ -129,7 +139,10 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setPosition(position);
 
 
+
+
 	//충돌
+
 	for (auto v : walls)
 	{
 		if (sprite.getGlobalBounds().intersects(v->GetWallRect()))
@@ -166,9 +179,6 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 			sprite.setPosition(position);
 		}
 	}
-	//양심상 다른 버전으로 만들어봐야겠다.
-
-	// 회전
 	Vector2i mousePos = InputMgr::GetMousePosition();
 	Vector2i mouseDir;
 	mouseDir.x = mousePos.x - resolution.x * 0.5f;
@@ -178,13 +188,14 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	sprite.setRotation(dgree);
 
 
+
 	timer += dt;
 	if (isReload)
 	{
 		reloadtimer += dt;
 	}
 
-	if (reloadingTime < reloadtimer)
+	if (currReload < reloadtimer)
 	{
 		isReload = false;
 	}
@@ -201,13 +212,30 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 	if (InputMgr::GetKeyDown(Keyboard::R))
 	{
-		if (!isReload)
+		if (!isReload && totalAmmo > 0)
 		{
 			Reload();
 			isReload = true;
 			reloadtimer = 0.f;
 		}
-	
+	}
+
+	if (InputMgr::GetKeyDown(Keyboard::X))
+	{
+		health = maxHealth;
+
+	}
+
+	if (isImuune)
+	{
+		immuneTimer += dt;
+	}
+
+	if (immuneTimer * 1000 > immuneMs && isImuune)
+	{
+	sprite.setTexture(TextureHolder::GetTexture("graphics/player.png"));
+		isImuune = false;
+		immuneTimer = 0.f;
 	}
 
 	auto it = useBullets.begin();
@@ -235,7 +263,6 @@ void Player::Draw(RenderWindow& window)
 	{
 		window.draw(bullet->GetShape());
 	}
-
 }
 
 void Player::GetHealthItem(int amount)
@@ -261,7 +288,6 @@ bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, float time)
 			isCollided = true;
 		}
 	}
-
 	return isCollided;
 }
 
@@ -274,11 +300,10 @@ bool Player::UpdateCollisionPickup(const std::list<PickUp*>& items)
 	{
 		if (bounds.intersects(item->GetGlobalBounds()))
 		{
-			item->GotIt();
+			item->GotIt(this);
 			isCollided = true;
 		}		
 	}
-
 	return isCollided;
 }
 
@@ -306,6 +331,10 @@ int Player::GetTotalAmmo()
 {
 	return totalAmmo;
 }
+void Player::GetAmmoItem(int addAmount)
+{
+	totalAmmo += addAmount;
+}
 
 void Player::Reload()
 {
@@ -319,7 +348,7 @@ void Player::Reload()
 	{
 		if (totalAmmo == 0)
 		{
-			//총알이 없는것을 표현하자.
+			
 		}
 		else
 		{
@@ -329,9 +358,31 @@ void Player::Reload()
 	}
 }
 
-bool Player::IsReload()
+bool& Player::IsReload()
 {
 	return isReload;
+}
+
+
+int Player::GetHealth()
+{
+	return health;
+}
+
+
+int Player::GetMaxHealth()
+{
+	return maxHealth;
+}
+
+float Player::GetMaxReload()
+{
+	return reloadingTime;
+}
+
+float Player::GetCurrReload()
+{
+	return currReload;
 }
 
 
