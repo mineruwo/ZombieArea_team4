@@ -226,10 +226,22 @@ int main()
 
 		window.setView(mainView);
 		window.draw(tileMap, &texBackground);
-
+		
 		for (auto zombie : zombies)
 		{
-			window.draw(zombie->GetSprite());
+			if (!zombie->IsALive()&&zombie->IsTime())
+			{
+				window.draw(zombie->GetSprite());
+			}
+
+		}
+		for (auto zombie : zombies)
+		{
+			if (zombie->IsALive())
+			{
+				window.draw(zombie->GetSprite());
+			}
+			
 		}
 
 		player.Draw(window);
