@@ -50,8 +50,9 @@ void Bullet::Update(float dt)
 
 }
 
-bool Bullet::UpdateCollision(const std::vector<Zombie*>& zombies)
+bool Bullet::UpdateCollision(const std::vector<Zombie*>& zombies, Time time)
 {
+
 	FloatRect bounds = shape.getGlobalBounds();
 	for (auto zombie : zombies)
 	{
@@ -59,7 +60,7 @@ bool Bullet::UpdateCollision(const std::vector<Zombie*>& zombies)
 		{
 			if (bounds.intersects(zombie->GetGlobalBound()))
 			{
-				zombie->OnHitted();
+				zombie->OnHitted(time);
 				Stop();
 
 				return true;

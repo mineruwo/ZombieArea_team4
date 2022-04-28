@@ -6,7 +6,8 @@
 std::vector<ZombieInfo> Zombie::zombieInfo;
 bool Zombie::isInitInfo = false;
 
-Zombie::Zombie():alive(true)
+Zombie::Zombie()
+	:alive(true), immuneMs(BLOATER_TIME)
 {
 	if (!isInitInfo)
 	{
@@ -36,20 +37,33 @@ Zombie::Zombie():alive(true)
 	}
 }
 
-bool Zombie::OnHitted()
+bool Zombie::OnHitted(Time timeZomHit)
 {
-	std::cout << "hit" << std::endl;
-
+	//std::cout << "hit" << std::endl;
 	//여기서 죽었을때도 처리 해야함 예를 들면 그 자리에 핏자국 만드는거
+	//일정시간 지난 후 사라지기
+	
+	--health;
 
-	// 피자 먹구 싶다
-
+	if (health < 0)
+	{		
+		alive = false;
+		lastZomHit = timeZomHit;
+		sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
+		timeZomHit.asSeconds() - lastZomHit.asSeconds() > immuneMs;
+		return true;				
+	}
 	return false;
 }
 
 bool Zombie::IsALive()
 {
 	return alive;
+}
+
+Time Zombie::GetLastTime() const
+{
+	return lastZomHit;
 }
 
 void Zombie::Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wall*> walls)

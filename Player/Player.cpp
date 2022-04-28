@@ -72,8 +72,6 @@ void Player::Spawn(IntRect arena, Vector2i res, int tileSize)
 
 bool Player::OnHitted(Time timeHit)
 {
-
-
 	if (timeHit.asMilliseconds() - lastHit.asMilliseconds() > immuneMs)
 	{
 		lastHit = timeHit;
@@ -82,7 +80,6 @@ bool Player::OnHitted(Time timeHit)
 
 		return true;
 	}
-
 	return false;
 }
 
@@ -229,12 +226,12 @@ void Player::GetHealthItem(int amount)
 	}
 }
 
-bool Player::UpdateCollision(const std::vector<Zombie*>& zombies)
+bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, Time time)
 {
 	bool isCollided = false;
 	for (auto bullet : useBullets)
 	{
-		if (bullet->UpdateCollision(zombies))
+		if (bullet->UpdateCollision(zombies, time))
 		{
 			isCollided = true;
 		}
