@@ -11,7 +11,7 @@
 
 Player::Player()
 	: speed(START_SPEED), health(START_HEALTH), maxHealth(START_HEALTH),
-	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine)
+	arena(), resolution(), tileSize(0.f), immuneMs(START_IMMUNE_MS), distanceToMuzzle(25.f), shootRate(START_SHOTRATE), timer(0.f), texFileName("graphics/player.png"), MaxMagazine(START_MAX_MAGAZINE), currMagazine(MaxMagazine), totalAmmo(START_TOTAL_AMMO), isReload(false), reloadtimer(0.f),reloadingTime(START_RELOADING_TIME)
 {
 	sprite.setTexture(TextureHolder::GetTexture(texFileName));
 	Utils::SetOrigin(sprite, Pivots::CC);
@@ -181,10 +181,19 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 
 	timer += dt;
+	if (isReload)
+	{
+		reloadtimer += dt;
+	}
+
+	if (reloadingTime < reloadtimer)
+	{
+		isReload = false;
+	}
 
 	if (InputMgr::GetMouseButton(Mouse::Button::Left))
 	{
-		if (timer > shootRate && currMagazine != 0)
+		if (timer > shootRate && currMagazine != 0 && !isReload)
 		{
 			Shoot(Utils::Normalize(Vector2f(mouseDir.x, mouseDir.y)));
 			timer = 0.f;
@@ -194,9 +203,14 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 
 	if (InputMgr::GetKeyDown(Keyboard::R))
 	{
-		currMagazine = MaxMagazine;
+		if (!isReload)
+		{
+			Reload();
+			isReload = true;
+			reloadtimer = 0.f;
+		}
+	
 	}
-
 
 	auto it = useBullets.begin();
 	while (it != useBullets.end())
@@ -214,8 +228,6 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 			++it;
 		}
 	}
-
-
 }
 
 void Player::Draw(RenderWindow& window)
@@ -282,3 +294,46 @@ void Player::UpgradeMaxHealth()
 {
 	maxHealth += START_HEALTH * 0.2f;
 }
+
+int Player::GetCurrMag()
+{
+	return currMagazine;
+}
+
+int Player::GetMaxMag()
+{
+	return MaxMagazine;
+}
+
+int Player::GetTotalAmmo()
+{
+	return totalAmmo;
+}
+
+void Player::Reload()
+{
+	if (currMagazine < MaxMagazine && totalAmmo >= MaxMagazine)
+	{
+		totalAmmo -= MaxMagazine - currMagazine;
+
+		currMagazine = MaxMagazine;
+	}
+	else if (currMagazine < MaxMagazine && totalAmmo < MaxMagazine - currMagazine)
+	{
+		if (totalAmmo == 0)
+		{
+			//총알이 없는것을 표현하자.
+		}
+		else
+		{
+			currMagazine += totalAmmo;
+			totalAmmo = 0;
+		}
+	}
+}
+
+bool Player::IsReload()
+{
+	return isReload;
+}
+

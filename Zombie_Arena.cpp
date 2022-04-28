@@ -8,6 +8,7 @@
 #include "Wall/Wall.h"
 #include "Bullet/Bullet.h"
 #include "Player/PickUp.h"
+#include "UI/UI.h"
 
 using namespace sf;
 using namespace std;
@@ -154,6 +155,8 @@ int main()
 	VertexArray tileMap;
 	CreateBackGround(tileMap, arena);
 
+	UI ui;
+
 	//initialize 
 
 	int i = 0;
@@ -200,7 +203,7 @@ int main()
 			zombie->UpdateCollision(player, playTime);
 			
 		}
-
+		ui.UpdateUi(player.GetCurrMag(),player.GetMaxMag(),player.GetTotalAmmo());
 
 		//Update
 
@@ -222,9 +225,9 @@ int main()
 
 
 		window.setView(UiView);
+		ui.DrawUi(window);
 		//ui draw
-
-
+		
 		window.display();
 		
 	}

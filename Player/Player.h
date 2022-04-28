@@ -21,7 +21,9 @@ private:
 	const float START_IMMUNE_MS = 1000;
 	//밀리세컨드라 1000이 1초인점 감안해야해요.
 
+	const int START_TOTAL_AMMO = 300;
 	const int START_MAX_MAGAZINE = 30;
+	const int START_RELOADING_TIME = 3;
 
 	Vector2f position;
 
@@ -40,6 +42,11 @@ private:
 
 	int MaxMagazine;
 	int currMagazine;
+	int totalAmmo;
+	float reloadingTime;
+	float reloadtimer;
+	bool isReload;
+
 	int health;
 	int maxHealth;
 	float immuneMs;
@@ -51,6 +58,7 @@ private:
 	std::list<Bullet*> useBullets;
 
 	float distanceToMuzzle;
+
 
 
 public:
@@ -79,5 +87,12 @@ public:
 
 	void UpgradeSpeed();
 	void UpgradeMaxHealth();
+
+	int GetCurrMag();
+	int GetMaxMag();
+	int GetTotalAmmo();
+
+	void Reload();
+	bool IsReload();
 };
 
