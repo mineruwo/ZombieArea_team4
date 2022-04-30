@@ -33,7 +33,6 @@
     <ClCompile Include="Utils\TextureHolder.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
     <ClCompile Include="Wall\Wall.cpp" />
-    <ClCompile Include="Zombie\Blood.cpp" />
     <ClCompile Include="Zombie\Zombie.cpp" />
     <ClCompile Include="Zombie_Arena.cpp" />
   </ItemGroup>
@@ -52,7 +51,6 @@
     <ClInclude Include="Utils\TextureHolder.h" />
     <ClInclude Include="Utils\Utils.h" />
     <ClInclude Include="Wall\Wall.h" />
-    <ClInclude Include="Zombie\Blood.h" />
     <ClInclude Include="Zombie\Zombie.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

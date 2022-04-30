@@ -16,10 +16,10 @@ class Player
 private:
 	const float START_SPEED = 200;
 	const float START_SHOTRATE = 0.1f;
-	//second ?�위?�오
+	//second 단위에오
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 3000;
-	//밀리세컨드??1000??1초인??감안?�야?�요.
+	//밀리세컨드라 1000이 1초인점 감안해야해요.
 
 	const int START_TOTAL_AMMO = 300;
 	const int START_MAX_MAGAZINE = 30;
@@ -43,7 +43,7 @@ private:
 	int MaxMagazine;
 	int currMagazine;
 
-	int totalAmmo; //�??�창 ??
+	int totalAmmo; //총 탄창 수
 
 	float reloadingTime;
 	float currReload;
@@ -85,7 +85,7 @@ public:
 	void Draw(RenderWindow& window);
 	void GetHealthItem(int amount);
 
-	bool UpdateCollision(const std::vector<Zombie*>& zombies);
+	bool UpdateCollision(const std::vector<Zombie*>& zombies, float time);
 	bool UpdateCollisionPickup(const std::list<PickUp*>& items);
 
 	void UpgradeSpeed();

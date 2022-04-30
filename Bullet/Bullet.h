@@ -27,7 +27,7 @@ public :
 	void SetFired(bool fired);
 	void Shoot(Vector2f pos, Vector2f dir);
 	void Update(float dt);
-	bool UpdateCollision(const std::vector<Zombie*>& zombies);
+	bool UpdateCollision(const std::vector<Zombie*>& zombies, float time);
 	void Stop();
 	bool IsFired();
 

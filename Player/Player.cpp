@@ -138,6 +138,9 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	position += dir * speed * dt;
 	sprite.setPosition(position);
 
+
+
+
 	//충돌
 
 	for (auto v : walls)
@@ -275,12 +278,12 @@ void Player::GetHealthItem(int amount)
 	}
 }
 
-bool Player::UpdateCollision(const std::vector<Zombie*>& zombies)
+bool Player::UpdateCollision(const std::vector<Zombie*>& zombies, float time)
 {
 	bool isCollided = false;
 	for (auto bullet : useBullets)
 	{
-		if (bullet->UpdateCollision(zombies))
+		if (bullet->UpdateCollision(zombies, time))
 		{
 			isCollided = true;
 		}
