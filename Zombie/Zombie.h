@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Player/Player.h"	
 #include "../Wall/Wall.h"
+#include "Blood.h"
 
 using namespace sf;
 
@@ -35,29 +36,32 @@ private:
 	int health;
 
 	float timer;
-	bool bloodSpawned;
-	int isdemage;
+	bool alive;
 
 	static std::vector<ZombieInfo> zombieInfo;
-	static bool isInitInfo;
-	bool alive;
+	static bool isInitInfo;	
+	Blood blood;
 	bool isTime;
 
 public:
 	Zombie();
 
-	bool OnHitted(float timeZomHit, int demage);
+	bool OnHitted();
 	bool IsALive();
+	void SetAlive(bool zalive);
 	//void Dead();
 
 	void Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wall*> walls);
 	void Update(float dt, Vector2f playerPosition);
+
 	bool UpdateCollision(Player& player, Time time);
 
 	FloatRect GetGlobalBound();
 	Sprite GetSprite();
 
+	int GetZHealth() const;
 	bool IsTime();
+	Blood& GetBlood();
 
 };
 

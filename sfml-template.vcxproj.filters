@@ -4,19 +4,16 @@
     <ClCompile Include="Zombie_Arena.cpp" />
     <ClCompile Include="Bullet\Bullet.cpp">
       <Filter>Bullet</Filter>
-
     </ClCompile>
     <ClCompile Include="Scene\GameOver.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\LevelUp.cpp">
       <Filter>Scene</Filter>
-
     </ClCompile>
     <ClCompile Include="Scene\Pause.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-
     <ClCompile Include="Player\PickUp.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -25,23 +22,19 @@
     </ClCompile>
     <ClCompile Include="Player\ReloadBar.cpp">
       <Filter>UI</Filter>
-
     </ClCompile>
     <ClCompile Include="Utils\InputMgr.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-
     <ClCompile Include="SceneMgr\SceneMgr.cpp">
       <Filter>SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="Utils\TextureHolder.cpp">
       <Filter>Utils</Filter>
-
     </ClCompile>
     <ClCompile Include="Scene\LevelUp.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-
     <ClCompile Include="Scene\Pause.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -63,19 +56,19 @@
     <ClCompile Include="Utils\Utils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-
     <ClCompile Include="Zombie\Zombie.cpp">
       <Filter>Zombie</Filter>
     </ClCompile>
     <ClCompile Include="Wall\Wall.cpp">
       <Filter>Wall</Filter>
-
+    </ClCompile>
+    <ClCompile Include="Zombie\Blood.cpp">
+      <Filter>Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet\Bullet.h">
       <Filter>Bullet</Filter>
-
     </ClInclude>
     <ClInclude Include="Scene\GameOver.h">
       <Filter>Scene</Filter>
@@ -85,26 +78,21 @@
     </ClInclude>
     <ClInclude Include="Scene\Pause.h">
       <Filter>Scene</Filter>
-
     </ClInclude>
     <ClInclude Include="Player\PickUp.h">
       <Filter>Player</Filter>
     </ClInclude>
-
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Player\ReloadBar.h">
       <Filter>UI</Filter>
-
     </ClInclude>
     <ClInclude Include="Utils\InputMgr.h">
       <Filter>Utils</Filter>
     </ClInclude>
-
     <ClInclude Include="SceneMgr\SceneMgr.h">
       <Filter>SceneMgr</Filter>
-
     </ClInclude>
     <ClInclude Include="Utils\TextureHolder.h">
       <Filter>Utils</Filter>
@@ -113,7 +101,6 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="SceneMgr\SceneMgr.h">
-
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="UI\UI.h">
@@ -127,6 +114,10 @@
     </ClInclude>
     <ClInclude Include="Wall\Wall.h">
       <Filter>Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Title.h" />
+    <ClInclude Include="Zombie\Blood.h">
+      <Filter>Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
