@@ -207,7 +207,7 @@ int main()
 		pickup.Update(dt.asSeconds());
 		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload(),player.GetMaxReload(),player.GetCurrReload());
 
-		player.UpdateCollision(zombies, dt.asMilliseconds());
+		player.UpdateCollision(zombies);
 		player.UpdateCollisionPickup(items);
 
 		for (auto zombie : zombies)
@@ -231,9 +231,8 @@ int main()
 		{
 			if (!zombie->IsALive()&&zombie->IsTime())
 			{
-				window.draw(zombie->GetSprite());
+				window.draw(zombie->GetBlood().GetSprite());
 			}
-
 		}
 		for (auto zombie : zombies)
 		{

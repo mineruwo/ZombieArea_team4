@@ -7,7 +7,7 @@ std::vector<ZombieInfo> Zombie::zombieInfo;
 bool Zombie::isInitInfo = false;
 
 Zombie::Zombie()
-	:alive(true), bloodSpawned(true), timer(4.f), isTime(true)
+	:alive(true), timer(4.f), isTime(true)
 {
 		zombieInfo.resize((int)ZombieTypes::COUNT);
 		{
@@ -38,18 +38,13 @@ Zombie::Zombie()
 	}
 }
 
-bool Zombie::OnHitted(float timeZomHit, int demage)
+bool Zombie::OnHitted()
 {		
-	isdemage = demage;
 	health--;
 
 	if (health <= 0)
 	{		
-		alive = false; 
-		speed = 0; 		
-		isdemage = 0;
-		return true;
-		//Dead(bloodSpawned);								
+		SetAlive(false);
 	}
 	return false;
 }
@@ -60,19 +55,10 @@ bool Zombie::IsALive()
 	return alive;
 }
 
-//void Zombie::Dead()
-//{
-//	if (bloodSpawned)
-//	{
-//		//alive = false;
-//		sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
-//		//isInitInfo = false;
-//	}
-//	else
-//	{
-//		alive = true;
-//	}	
-//}
+void Zombie::SetAlive(bool zalive)
+{
+	alive = zalive;
+}
 
 void Zombie::Spawn(ZombieTypes type, IntRect arena, int x, int y, std::vector<Wall*> walls)
 {	
@@ -135,24 +121,20 @@ void Zombie::Update(float dt, Vector2f playerPosition)
 		float dgree = radian * 180.f / 3.141592;
 		sprite.setRotation(dgree);
 	}
-
+	if (!alive && !blood.GetDecision())
+	{
+		blood.SetDecision(true);
+		blood.SetPosition(position);
+	}
 	if (!alive)
 	{		
 		sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
 		timer -= dt;
 		if (timer < 0.f)
 		{
-			//sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
-			//Dead();
-			//isTime = false;			
+			isTime = false;
 		}
-		//피가 생성  중
 	}
-	/*if (!alive)
-	{
-		sprite.setTexture(TextureHolder::GetTexture("graphics/blood.png"));
-	}*/
-
 }
 
 bool Zombie::UpdateCollision(Player& player, Time time)
@@ -175,7 +157,17 @@ Sprite Zombie::GetSprite()
 	return sprite;
 }
 
+int Zombie::GetZHealth() const
+{
+	return health;
+}
+
 bool Zombie::IsTime()
 {
 	return isTime;
+}
+
+Blood& Zombie::GetBlood()
+{
+	return blood;
 }
