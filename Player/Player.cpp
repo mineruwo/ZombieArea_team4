@@ -184,8 +184,6 @@ void Player::Update(float dt, std::vector <Wall*> walls)
 	float dgree = radian * 180.f / 3.141592;
 	sprite.setRotation(dgree);
 
-
-
 	timer += dt;
 	if (isReload)
 	{

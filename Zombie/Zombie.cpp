@@ -139,12 +139,16 @@ void Zombie::Update(float dt, Vector2f playerPosition)
 
 bool Zombie::UpdateCollision(Player& player, Time time)
 {
-	if (sprite.getGlobalBounds().intersects(player.GetGobalBound()))
+	if (alive)
 	{
-		player.OnHitted(time);
-		return true;
+		if (sprite.getGlobalBounds().intersects(player.GetGobalBound()))
+		{
+			player.OnHitted(time);
+			return true;
+		}
+		return false;
 	}
-	return false;
+	
 }
 
 FloatRect Zombie::GetGlobalBound()
