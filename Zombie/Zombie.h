@@ -63,5 +63,6 @@ public:
 	bool IsTime();
 	Blood& GetBlood();
 
+
 };
 

@@ -37,7 +37,6 @@ private:
 	int totalHealth;
 	int totalAmmo;
 
-
 public:
 	PickUp(PickupType type);
 
@@ -58,8 +57,6 @@ public:
 
 	void UpgradePickupAmmo();
 	void UpgradePickupHealth();
-
-
-
+ 
 };
 

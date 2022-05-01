@@ -41,7 +41,7 @@ void PickUp::Spawn(bool spawn)
 	{
 		timer = START_SECONDS_FOR_LIVE;
 		
-		int x = Utils::RandomRange(arena.left, arena.left + arena.width );
+		int x = Utils::RandomRange(arena.left, arena.left + arena.width);
 
 		int y = Utils::RandomRange(arena.top, arena.top + arena.height);
 
@@ -50,7 +50,6 @@ void PickUp::Spawn(bool spawn)
 		position.y = y;
 		
 		sprite.setPosition(position);
-
 		for (auto v : walls)
 		{
 			if (sprite.getGlobalBounds().intersects(v->GetWallRect()))
@@ -90,6 +89,7 @@ void PickUp::Spawn(bool spawn)
 
 void PickUp::GotIt(Player* player)
 {
+	
 	switch (type)
 	{
 	case PickupType::AMMO:
@@ -103,9 +103,6 @@ void PickUp::GotIt(Player* player)
 		Spawn(true);
 		break;
 	}
-	//return value;
-
-	//저 출력문 구간엔 실제로 해야하는 일들 리턴해줘야 해.
 }
 
 void PickUp::SetArena(IntRect rect)
@@ -138,4 +135,5 @@ void PickUp::UpgradePickupHealth()
 {
 	totalHealth += 10;
 }
+
 
