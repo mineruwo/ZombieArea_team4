@@ -18,6 +18,4 @@ public:
 	Title();
 	void Draw(RenderWindow& window);
 
-
-
 };

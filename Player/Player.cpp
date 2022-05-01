@@ -358,6 +358,16 @@ bool& Player::IsReload()
 	return isReload;
 }
 
+void Player::UpgradeShootRate()
+{
+	shootRate *= 0.9;
+}
+
+void Player::UpgrageMag()
+{
+	MaxMagazine += 2;
+}
+
 
 int Player::GetHealth()
 {
@@ -379,6 +389,8 @@ float Player::GetCurrReload()
 {
 	return currReload;
 }
+
+
 
 
 

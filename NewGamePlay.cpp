@@ -1,101 +1,24 @@
-#include "gamePlay.h"
+#include "NewGamePlay.h"
 
-GamePlay::GamePlay()
-	:START_ZOMBIES_COUNT(20)
+void NewGamePlay::Init()
 {
-	texBackground.loadFromFile("graphics/background_sheet.png");
+	mainView.setCenter(0, 0);
+	mainView.setSize()
 }
 
-void GamePlay::initialize(Vector2i resolution, Player& player, PickUp& pickUp)
+void NewGamePlay::Update()
 {
-	arena.width = 1200;
-	arena.height = 1200;
-
-	CreateWalls(walls, arena);
-	player.Spawn(arena, resolution, 0.f);
-
-	zombiesCount = START_ZOMBIES_COUNT;
-	CreateZombies(zombies, zombiesCount, arena, walls);
-
-	CreateBackGround(tileMap, arena);
-
-	pickUp.SetArena(arena);
-	items.push_back(&pickUp);
 }
 
-void GamePlay::update(RenderWindow& window, View& mainView, Player& player, PickUp& pickUp)
+void NewGamePlay::Draw(RenderWindow& window)
 {
-	if (window.isOpen())
-	{
-		Time dt = clock.restart();
-		playTime += dt;
-
-		InputMgr::ClearInput();
-
-		Event event;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-			{
-				window.close();
-			}
-
-			InputMgr::ProcessInput(event);
-
-		}
-
-		InputMgr::Update(dt.asSeconds(), window, mainView);
-
-		player.Update(dt.asSeconds(), walls);
-		pickUp.Update(dt.asSeconds());
-		reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload(), player.GetMaxReload(), player.GetCurrReload());
-
-		for (auto zombie : zombies)
-		{
-			zombie->Update(dt.asSeconds(), player.GetPosition());
-			zombie->UpdateCollision(player, playTime);
-		}
-
-		ui.UpdateUi(player.GetCurrMag(), player.GetMaxMag(), player.GetTotalAmmo(), waves, zombiesCount, score, hiScore, player.GetMaxHealth(), player.GetHealth());
-	}
-
 }
 
-void GamePlay::draw(RenderWindow& window, View& mainView, View& UiView, Player& player, PickUp& pickUp)
+void NewGamePlay::Release()
 {
-
-	window.setView(mainView);
-	window.draw(tileMap, &texBackground);
-
-	for (auto zombie : zombies)
-	{
-		window.draw(zombie->GetSprite());
-	}
-
-	player.Draw(window);
-
-	if (player.IsReload())
-	{
-		window.draw(reloaing.GetReloadBar());
-	}
-
-	player.Draw(window);
-
-	if (player.IsReload())
-	{
-		window.draw(reloaing.GetReloadBar());
-	}
-
-	window.draw(pickUp.GetSprite());
-
-	window.setView(UiView);
-	ui.DrawUi(window);
-
-
 }
 
-int GamePlay::CreateBackGround(VertexArray& va, IntRect arena)
+int NewGamePlay::CreateBackGround(VertexArray& va, IntRect arena)
 {
 	const int TILE_SIZE = 50;
 	const int TILE_TYPES = 3;
@@ -140,7 +63,7 @@ int GamePlay::CreateBackGround(VertexArray& va, IntRect arena)
 	return cols * rows;
 }
 
-void GamePlay::CreateZombies(std::vector<Zombie*>& zombies, int count, IntRect arena, std::vector<Wall*> walls)
+void NewGamePlay::CreateZombies(std::vector<Zombie*>& zombies, int count, IntRect arena, std::vector<Wall*> walls)
 {
 	for (auto v : zombies)
 	{
@@ -165,7 +88,7 @@ void GamePlay::CreateZombies(std::vector<Zombie*>& zombies, int count, IntRect a
 	}
 }
 
-void GamePlay::CreateWalls(std::vector<Wall*>& walls, IntRect arena)
+void NewGamePlay::CreateWalls(std::vector<Wall*>& walls, IntRect arena)
 {
 	for (auto v : walls)
 	{

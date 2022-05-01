@@ -65,6 +65,29 @@
     <ClCompile Include="Zombie\Blood.cpp">
       <Filter>Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\GamePlay.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Scene.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
+    <ClCompile Include="NewTitle.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
+    <ClCompile Include="NewLevelUp.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
+    <ClCompile Include="NewPause.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameOver.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGamePlay.cpp">
+      <Filter>NewScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet\Bullet.h">
@@ -121,6 +144,28 @@
     <ClInclude Include="Scene\Title.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\GamePlay.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="Scene.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
+    <ClInclude Include="NewTitle.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
+    <ClInclude Include="NewLevelUp.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
+    <ClInclude Include="NewPause.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameOver.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGamePlay.h">
+      <Filter>NewScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -146,6 +191,9 @@
     </Filter>
     <Filter Include="Wall">
       <UniqueIdentifier>{c92ddaa0-40e7-41f8-bee2-b0542072f40f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NewScene">
+      <UniqueIdentifier>{695a661a-20dd-45a9-b680-dd8101a9f4a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

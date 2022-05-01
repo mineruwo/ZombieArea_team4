@@ -1,47 +1,29 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Scene/Title.h"
-#include "../Scene/Pause.h"
-#include "../Scene/GameOver.h"
-#include "../Scene/LevelUp.h"
-#include "../Scene/gamePlay.h"
 #include "../Utils/InputMgr.h"
+#include "../NewTitle.h"
+#include "../NewPause.h"
+#include "../NewGamePlay.h"
+#include "../NewGameOver.h"
+#include "../NewLevelUp.h"
+#include "../Scene.h"
 
 using namespace sf;
-
-enum class Scene
-{
-	TITLE,
-	GamePlay,
-	LEVELUP,
-	PAUSE,
-	GAMEOVER,
-
-};
 
 class SceneMgr
 {
 private:
-	Scene currscene;
-	TextureHolder textureHolder;
-
-	Title title;
-	GamePlay play;
-	LevelUp levelup;
-	Pause pause;
-	GameOver gameover;
-
-
-	Sprite spriteCrosshair;
-
+	Scene* scene;
+	SceneID currScene;
 
 public:
-
 	SceneMgr();
-	~SceneMgr();
+	void ChangeScene(SceneID Id);
 
-	void sceneInitialize(RenderWindow& window, Vector2i resolution);
-	void SceneUpdate(Player& player, PickUp& pickup); // 키값에 반응하는것 switch case 작성
-	void SceneChange(Scene id);
-	void SceneDraw(RenderWindow& window, View& mainview, View& UiView);
+	void SceneInit(Vector2i resolution);
+	void SceneUpdate();
+	void SceneDraw(RenderWindow& window);
+	void SceneRelease();
+
 };
+

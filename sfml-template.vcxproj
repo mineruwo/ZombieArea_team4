@@ -20,13 +20,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet\Bullet.cpp" />
+    <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewGameOver.cpp" />
+    <ClCompile Include="NewGamePlay.cpp" />
+    <ClCompile Include="NewLevelUp.cpp" />
+    <ClCompile Include="NewPause.cpp" />
+    <ClCompile Include="NewTitle.cpp" />
     <ClCompile Include="Player\PickUp.cpp" />
     <ClCompile Include="Player\Player.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr\SceneMgr.cpp" />
-    <ClCompile Include="Scene\GameOver.cpp" />
-    <ClCompile Include="Scene\LevelUp.cpp" />
-    <ClCompile Include="Scene\Pause.cpp" />
-    <ClCompile Include="Scene\Title.cpp" />
+    <ClCompile Include="Scene\GameOver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\GamePlay.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\LevelUp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\Pause.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\Title.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Player\ReloadBar.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="Utils\InputMgr.cpp" />
@@ -35,17 +54,37 @@
     <ClCompile Include="Wall\Wall.cpp" />
     <ClCompile Include="Zombie\Blood.cpp" />
     <ClCompile Include="Zombie\Zombie.cpp" />
-    <ClCompile Include="Zombie_Arena.cpp" />
+    <ClCompile Include="Zombie_Arena.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet\Bullet.h" />
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="NewGameOver.h" />
+    <ClInclude Include="NewGamePlay.h" />
+    <ClInclude Include="NewLevelUp.h" />
+    <ClInclude Include="NewPause.h" />
+    <ClInclude Include="NewTitle.h" />
     <ClInclude Include="Player\PickUp.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr\SceneMgr.h" />
-    <ClInclude Include="Scene\GameOver.h" />
-    <ClInclude Include="Scene\LevelUp.h" />
-    <ClInclude Include="Scene\Pause.h" />
-    <ClInclude Include="Scene\Title.h" />
+    <ClInclude Include="Scene\GameOver.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\GamePlay.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\LevelUp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\Pause.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\Title.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Player\ReloadBar.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="Utils\InputMgr.h" />

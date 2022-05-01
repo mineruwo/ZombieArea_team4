@@ -7,7 +7,7 @@ class Pause
 {
 private:
 
-	Text PauseText;
+	Text pauseText;
 	Font font;
 
 public:

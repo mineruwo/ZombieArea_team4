@@ -19,7 +19,6 @@ class GamePlay
 {
 private:
 	IntRect arena;
-	Player player;
 	std::vector <Wall*> walls;
 	std::vector<Zombie*> zombies;
 
@@ -31,8 +30,6 @@ private:
 
 	std::list<PickUp*> items;
 	VertexArray tileMap;
-
-	PickUp pickup = (PickupType)Utils::RandomRange(0, 2);
 
 	int zombiesCount;
 	int waves = 0;
@@ -46,9 +43,9 @@ private:
 public:
 	GamePlay();
 
-	void initialize(Vector2i resolution);
-	void update(RenderWindow& window, View& mainview);
-	void draw(RenderWindow& window, View& mainview, View& UiView);
+	void initialize(Vector2i resolution , Player& player, PickUp& pickUp);
+	void update(RenderWindow& window, View& mainview, Player& player, PickUp& pickUp);
+	void draw(RenderWindow& window, View& mainview, View& UiView, Player& player, PickUp& pickUp);
 
 
 	int CreateBackGround(VertexArray& va, IntRect arena);

@@ -15,11 +15,11 @@ class Player
 {
 private:
 	const float START_SPEED = 200;
-	const float START_SHOTRATE = 0.1f;
-	//second ?�위?�오
+	const float START_SHOTRATE = 0.5f;
+	
 	const float START_HEALTH = 100;
 	const float START_IMMUNE_MS = 3000;
-	//밀리세컨드??1000??1초인??감안?�야?�요.
+	
 
 	const int START_TOTAL_AMMO = 300;
 	const int START_MAX_MAGAZINE = 30;
@@ -43,7 +43,7 @@ private:
 	int MaxMagazine;
 	int currMagazine;
 
-	int totalAmmo; //�??�창 ??
+	int totalAmmo; 
 
 	float reloadingTime;
 	float currReload;
@@ -101,10 +101,12 @@ public:
 	int GetMaxHealth();
 
 
-	void Reload();
+	void  Reload();
 	float GetMaxReload();
 	float GetCurrReload();
 	bool& IsReload();
+	void UpgradeShootRate();
+	void UpgrageMag();
 
 };
 

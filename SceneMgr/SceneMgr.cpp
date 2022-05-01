@@ -2,100 +2,62 @@
 
 SceneMgr::SceneMgr()
 {
+	scene = new NewTitle;
+	currScene = SceneID::Title;
 }
 
-SceneMgr::~SceneMgr()
+void SceneMgr::ChangeScene(SceneID Id)
 {
+	delete scene;
 
+	switch (Id)
+	{
+	case SceneID::Title:
+		scene = new NewTitle;
+		currScene = SceneID::Title;
+		break;
+	case SceneID::GamePlay:
+		scene = new NewGamePlay;
+		currScene = SceneID::GamePlay;
+		break;
+	case SceneID::Pause:
+		scene = new NewPause;
+		currScene = SceneID::Pause;
+		break;
+	case SceneID::LevelUp:
+		scene = new NewLevelUp;
+		currScene = SceneID::LevelUp;
+		break;
+	case SceneID::GameOver:
+		scene = new NewGameOver;
+		currScene = SceneID::GameOver;
+		break;
+	}
 }
 
-void SceneMgr::sceneInitialize(RenderWindow& window, Vector2i resolution)
+void SceneMgr::SceneInit(Vector2i resolution)
 {
-
-    window.setMouseCursorVisible(false);
-
-    switch (currscene)
-    {
-    case Scene::TITLE:
-        break;
-    case Scene::GamePlay:
-        play.initialize(resolution);
-        break;
-    case Scene::LEVELUP:
-        break;
-    case Scene::PAUSE:
-        break;
-    case Scene::GAMEOVER:
-        break;
-    }
+	scene->Init();
 }
 
-void SceneMgr::SceneUpdate(Player& player, PickUp& pickup)
+void SceneMgr::SceneUpdate()
 {
-    switch (currscene)
-    {
-    case Scene::TITLE:
-        if (InputMgr::GetKeyDown(Keyboard::Enter))
-        {
-            SceneChange(Scene::GamePlay);
-        }
-        break;
-    case Scene::GamePlay:
-        if (InputMgr::GetKeyDown(Keyboard::P))
-        {
-            SceneChange(Scene::PAUSE);
-        }
-        break;
-    case Scene::LEVELUP:
-        levelup.SelectUpgrade(player, pickup);
-        SceneChange(Scene::GamePlay);
-        break;
-    case Scene::PAUSE:
-        if (InputMgr::GetKeyDown(Keyboard::Enter))
-        {
-            SceneChange(Scene::GamePlay);
-        }
-        break;
-    case Scene::GAMEOVER:
-        if (InputMgr::GetKeyDown(Keyboard::Enter))
-        {
-            SceneChange(Scene::GamePlay);
-        }
-        break;
-    default:
-        break;
-    }
+	scene->Update();
+
+	if (currScene != scene->GetCurrScene())
+	{
+		SceneRelease();
+		ChangeScene(scene->GetCurrScene());
+	}
 
 }
 
-
-void SceneMgr::SceneChange(Scene id)
+void SceneMgr::SceneDraw(RenderWindow& window)
 {
-    currscene = id;
+	scene->Draw(window);
 }
 
-void SceneMgr::SceneDraw(RenderWindow& window, View& mainview, View& UiView)
+void SceneMgr::SceneRelease()
 {
-    window.clear();
-
-    switch (currscene)
-    {
-    case Scene::TITLE:
-        title.Draw(window);
-        break;
-    case Scene::GamePlay:
-        play.draw(window, mainview, UiView);
-        break;
-    case Scene::LEVELUP:
-        levelup.Draw(window);
-        break;
-    case Scene::PAUSE:
-        pause.Draw(window);
-        break;
-    case Scene::GAMEOVER:
-        gameover.Draw(window);
-        break;
-    }
-
-    window.display();
+	scene->Release();
 }
