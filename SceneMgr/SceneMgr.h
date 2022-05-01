@@ -4,6 +4,7 @@
 #include "../Scene/Pause.h"
 #include "../Scene/GameOver.h"
 #include "../Scene/LevelUp.h"
+#include "../Scene/gamePlay.h"
 #include "../Utils/InputMgr.h"
 
 using namespace sf;
@@ -22,26 +23,25 @@ class SceneMgr
 {
 private:
 	Scene currscene;
-	RenderWindow* window;
+	TextureHolder textureHolder;
 
 	Title title;
-	// Game game;
+	GamePlay play;
 	LevelUp levelup;
 	Pause pause;
 	GameOver gameover;
 
 
+	Sprite spriteCrosshair;
 
 
 public:
 
-
-	SceneMgr(RenderWindow& window);
+	SceneMgr();
 	~SceneMgr();
 
-	void sceneInitialize();
+	void sceneInitialize(RenderWindow& window, Vector2i resolution);
 	void SceneUpdate(Player& player, PickUp& pickup); // 키값에 반응하는것 switch case 작성
 	void SceneChange(Scene id);
-	void SceneDraw(); //
-
+	void SceneDraw(RenderWindow& window);
 };
