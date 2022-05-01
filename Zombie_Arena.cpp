@@ -175,7 +175,6 @@ int main()
 	int score = 0;
 	int hiScore = 0;
 
-	int i = 0;
 	while (window.isOpen())
 	{
 		Time dt = clock.restart();

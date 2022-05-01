@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
 enum class SceneID
 {
 	Title,
@@ -8,7 +9,6 @@ enum class SceneID
 	Pause,
 	LevelUp,
 	GameOver,
-	Scene,
 };
 
 class Scene
@@ -20,8 +20,8 @@ private:
 public:
 	Scene();
 
-	virtual void Init();
-	virtual void Update();
+	virtual void Init(Vector2i resolution);
+	virtual void Update(Time dt, RenderWindow& window);
 	virtual void Draw(sf::RenderWindow& window);
 	virtual void Release();
 

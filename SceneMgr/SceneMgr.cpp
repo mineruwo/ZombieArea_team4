@@ -37,12 +37,12 @@ void SceneMgr::ChangeScene(SceneID Id)
 
 void SceneMgr::SceneInit(Vector2i resolution)
 {
-	scene->Init();
+	scene->Init(resolution);
 }
 
-void SceneMgr::SceneUpdate()
+void SceneMgr::SceneUpdate(Time dt, RenderWindow& window)
 {
-	scene->Update();
+	scene->Update(dt, window);
 
 	if (currScene != scene->GetCurrScene())
 	{
@@ -54,7 +54,9 @@ void SceneMgr::SceneUpdate()
 
 void SceneMgr::SceneDraw(RenderWindow& window)
 {
+	window.clear();
 	scene->Draw(window);
+	window.display();
 }
 
 void SceneMgr::SceneRelease()

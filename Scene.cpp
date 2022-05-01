@@ -1,15 +1,15 @@
 #include "Scene.h"
 
-Scene::Scene() : currScene(SceneID::Scene)
+Scene::Scene() : currScene(SceneID::Title)
 {
 	font.loadFromFile("fonts/zombiecontrol.ttf");
 }
 
-void Scene::Init()
+void Scene::Init(Vector2i resolution)
 {
 }
 
-void Scene::Update()
+void Scene::Update(Time dt, RenderWindow& window)
 {
 }
 

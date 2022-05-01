@@ -1,17 +1,93 @@
 #include "NewGamePlay.h"
 
-void NewGamePlay::Init()
+void NewGamePlay::Init(Vector2i resolution)
 {
-	mainView.setCenter(0, 0);
-	mainView.setSize()
+	mainView.reset(FloatRect(0.f, 0.f, resolution.x, resolution.y));
+
+	UiView.reset(FloatRect(0.f, 0.f, resolution.x, resolution.y));
+
+	IntRect arena;
+	arena.width = 1200;
+	arena.height = 1200;
+
+	CreateWalls(walls, arena);
+
+	player.Spawn(arena, resolution, 0.f);
+
+	CreateZombies(zombies, zombieCount, arena, walls);
+
+	pickup.SetArena(arena);
+	items.push_back(&pickup);
+
+	texBackground = TextureHolder::GetTexture("graphics/background_sheet.png");
+
+	texBackground.loadFromFile("graphics/background_sheet.png");
+
+	CreateBackGround(tileMap, arena);
+
+	spriteCrosshair.setTexture(textureCrosshair);
+	Utils::SetOrigin(spriteCrosshair, Pivots::CC);
+
 }
 
-void NewGamePlay::Update()
+void NewGamePlay::Update(Time dt, RenderWindow& window)
+{
+	spriteCrosshair.setPosition(InputMgr::GetMouseWolrdPosition());
+	mainView.setCenter(player.GetPosition());
+
+	InputMgr::Update(dt.asSeconds(), window, mainView);
+	player.Update(dt.asSeconds(), walls);
+	pickup.Update(dt.asSeconds());
+	reloaing.Update(dt.asSeconds(), player.GetPosition(), player.IsReload(), player.GetMaxReload(), player.GetCurrReload());
+
+	player.UpdateCollision(zombies);
+	player.UpdateCollisionPickup(items);
+
+	for (auto zombie : zombies)
+	{
+		zombie->Update(dt.asSeconds(), player.GetPosition());
+		zombie->UpdateCollision(player, playTime);
+	}
+	ui.UpdateUi(player.GetCurrMag(), player.GetMaxMag(), player.GetTotalAmmo(), waves, zombieCount, score, hiScore, player.GetMaxHealth(), player.GetHealth());
+}
+
+NewGamePlay::NewGamePlay():zombieCount(START_ZOMBIE_COUNT), pickup((PickupType)Utils::RandomRange(0, 2))
 {
 }
 
 void NewGamePlay::Draw(RenderWindow& window)
 {
+	window.setView(mainView);
+	window.draw(tileMap, &texBackground);
+
+	for (auto zombie : zombies)
+	{
+		if (!zombie->IsALive() && zombie->IsTime())
+		{
+			window.draw(zombie->GetBlood().GetSprite());
+		}
+	}
+	for (auto zombie : zombies)
+	{
+		if (zombie->IsALive())
+		{
+			window.draw(zombie->GetSprite());
+		}
+
+	}
+
+	player.Draw(window);
+
+	if (player.IsReload())
+	{
+		window.draw(reloaing.GetReloadBar());
+	}
+
+	window.draw(pickup.GetSprite());
+	window.draw(spriteCrosshair);
+
+	window.setView(UiView);
+	ui.DrawUi(window);
 }
 
 void NewGamePlay::Release()

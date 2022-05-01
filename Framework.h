@@ -17,7 +17,7 @@ private:
 
 public:
 	Framework();
-	void Initialize(Vector2i resolution);
+	void Initialize();
 	void Update();
 	void Draw();
 

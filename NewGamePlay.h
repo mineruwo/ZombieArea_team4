@@ -23,9 +23,38 @@ class NewGamePlay :
 private:
 	View mainView;
 	View UiView;
+
+	std::vector <Wall*> walls;
+	std::vector<Zombie*> zombies;
+	std::list<PickUp*> items;
+
+	Player player;
+	PickUp pickup;
+
+	Time playTime;
+
+	Texture& texBackground = TextureHolder::GetTexture("graphics/background_sheet.png");
+
+	VertexArray tileMap;
+	Sprite spriteCrosshair;
+	Texture textureCrosshair = TextureHolder::GetTexture("graphics/crosshair.png");
+
+	UI ui;
+	ReloadBar reloaing;
+
+	const int START_ZOMBIE_COUNT = 20;
+	int zombieCount;
+
+	int waves = 0;
+	int score = 0;
+	int hiScore = 0;
+
 public:
-	virtual void Init();
-	virtual void Update();
+
+	NewGamePlay();
+
+	virtual void Init(Vector2i resolution);
+	virtual void Update(Time dt, RenderWindow& window);
 	virtual void Draw(RenderWindow& window);
 	virtual void Release();
 

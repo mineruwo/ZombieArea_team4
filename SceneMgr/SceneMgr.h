@@ -21,7 +21,7 @@ public:
 	void ChangeScene(SceneID Id);
 
 	void SceneInit(Vector2i resolution);
-	void SceneUpdate();
+	void SceneUpdate(Time dt, RenderWindow& window);
 	void SceneDraw(RenderWindow& window);
 	void SceneRelease();
 

@@ -8,7 +8,7 @@ Framework::Framework()
 	window.create(VideoMode(resolution.x, resolution.y), "Zombie Arena!", Style::Fullscreen);
 }
 
-void Framework::Initialize(Vector2i resolution)
+void Framework::Initialize()
 {
 	sceneMgr.SceneInit(resolution);
 }
@@ -17,6 +17,7 @@ void Framework::Update()
 {
 	InputMgr::ClearInput();
 	Event event;
+	Time dt = clock.restart();
 	while (window.pollEvent(event))
 	{
 		if (event.type == Event::Closed)
@@ -32,7 +33,7 @@ void Framework::Update()
 			//이후 일시정지로 변경할 예정
 		}
 	}
-	sceneMgr.SceneUpdate();
+	sceneMgr.SceneUpdate(dt,window);
 }
 
 void Framework::Draw()
