@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene() : currScene(SceneID::Title)
+Scene::Scene()
 {
 	font.loadFromFile("fonts/zombiecontrol.ttf");
 }
@@ -17,9 +17,7 @@ void Scene::Draw(sf::RenderWindow& window)
 {
 }
 
-void Scene::Release()
-{
-}
+
 
 SceneID Scene::NextScene(SceneID Id)
 {

@@ -5,7 +5,7 @@ Framework::Framework()
 	resolution.x = VideoMode::getDesktopMode().width;
 	resolution.y = VideoMode::getDesktopMode().height;
 
-	window.create(VideoMode(resolution.x, resolution.y), "Zombie Arena!", Style::Fullscreen);
+	window.create(VideoMode(resolution.x, resolution.y), "Zombie Arena!", Style::Default);
 }
 
 void Framework::Initialize()

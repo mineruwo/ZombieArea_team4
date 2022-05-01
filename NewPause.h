@@ -7,6 +7,7 @@ class NewPause : public Scene
 {
 private:
 	Text pauseText;
+	SceneID currScene;
 public:
 	virtual void Init();
 	virtual void Update();

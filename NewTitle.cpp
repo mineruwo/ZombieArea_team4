@@ -15,7 +15,7 @@ void NewTitle::Init()
 	PressEnter.setString("PRESS ENTER TO PLAY ");
 	PressEnter.setPosition(300, 800);
 
-	Scene::currScene = SceneID::Title;
+	currScene = SceneID::Title;
 }
 
 void NewTitle::Update()

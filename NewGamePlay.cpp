@@ -28,6 +28,8 @@ void NewGamePlay::Init(Vector2i resolution)
 	spriteCrosshair.setTexture(textureCrosshair);
 	Utils::SetOrigin(spriteCrosshair, Pivots::CC);
 
+	currScene = SceneID::GamePlay;
+
 }
 
 void NewGamePlay::Update(Time dt, RenderWindow& window)

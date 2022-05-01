@@ -4,6 +4,7 @@ class NewGameOver : public Scene
 {
 private:
 	Text overText;
+	SceneID currScene;
 public:
 	virtual void Init();
 	virtual void Update();

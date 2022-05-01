@@ -15,15 +15,14 @@ class Scene
 {
 protected:
 	sf::Font font;
-	SceneID currScene;
 private:
+	SceneID currScene;
 public:
 	Scene();
-
 	virtual void Init(Vector2i resolution);
 	virtual void Update(Time dt, RenderWindow& window);
 	virtual void Draw(sf::RenderWindow& window);
-	virtual void Release();
+	virtual void Release() {};
 
 	SceneID NextScene(SceneID Id);
 	SceneID GetCurrScene();

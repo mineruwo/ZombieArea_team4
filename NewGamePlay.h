@@ -48,6 +48,7 @@ private:
 	int waves = 0;
 	int score = 0;
 	int hiScore = 0;
+	SceneID currScene;
 
 public:
 

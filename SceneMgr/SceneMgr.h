@@ -18,6 +18,7 @@ private:
 
 public:
 	SceneMgr();
+	~SceneMgr();
 	void ChangeScene(SceneID Id);
 
 	void SceneInit(Vector2i resolution);

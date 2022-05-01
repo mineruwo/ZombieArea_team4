@@ -13,6 +13,7 @@ private:
 	std::string textureFileName;
 	Sprite sprite;
 	Text Upgrade;
+	SceneID currScene;
 public:
 	virtual void Init();
 	virtual void Update(Player& player, PickUp& pickup);

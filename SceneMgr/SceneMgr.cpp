@@ -6,6 +6,11 @@ SceneMgr::SceneMgr()
 	currScene = SceneID::Title;
 }
 
+SceneMgr::~SceneMgr()
+{
+	delete scene;
+}
+
 void SceneMgr::ChangeScene(SceneID Id)
 {
 	delete scene;
@@ -63,3 +68,5 @@ void SceneMgr::SceneRelease()
 {
 	scene->Release();
 }
+
+

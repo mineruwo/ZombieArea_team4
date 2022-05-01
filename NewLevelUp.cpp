@@ -12,6 +12,8 @@ void NewLevelUp::Init()
         " 1.INCREASED RATE OF FIRE \n 2.INCREASED CLIP SIZE (NEXT RELOAD) \n 3.INCREASED MAX HEALTH \n"
         " 4.INCREASED RUN SPEED \n 5.MORE AND BETTER HEALTH PICKUPS \n 6.MORE AND BETTER AMMO PICKUPS \n");
     Upgrade.setPosition(200, 300);// 1920 1080
+
+    currScene = SceneID::LevelUp;
 }
 
 void NewLevelUp::Update(Player& player, PickUp& pickup)

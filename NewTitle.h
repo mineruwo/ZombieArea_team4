@@ -11,6 +11,7 @@ private:
 	std::string textureFileName;
 	Sprite sprite;
 	Text PressEnter;
+	SceneID currScene;
 
 public:
 	virtual void Init();
