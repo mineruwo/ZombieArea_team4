@@ -2,11 +2,11 @@
 
 SceneMgr::SceneMgr()
 {
-
 }
 
 SceneMgr::~SceneMgr()
 {
+
 }
 
 void SceneMgr::sceneInitialize(RenderWindow& window, Vector2i resolution)
@@ -18,7 +18,7 @@ void SceneMgr::sceneInitialize(RenderWindow& window, Vector2i resolution)
     {
     case Scene::TITLE:
         break;
-    case Scene::GAME:
+    case Scene::GamePlay:
         play.initialize(resolution);
         break;
     case Scene::LEVELUP:
@@ -37,32 +37,29 @@ void SceneMgr::SceneUpdate(Player& player, PickUp& pickup)
     case Scene::TITLE:
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
-            SceneChange(Scene::GAME);
+            SceneChange(Scene::GamePlay);
         }
         break;
-    case Scene::GAME:
+    case Scene::GamePlay:
         if (InputMgr::GetKeyDown(Keyboard::P))
         {
             SceneChange(Scene::PAUSE);
         }
-
-
         break;
     case Scene::LEVELUP:
         levelup.SelectUpgrade(player, pickup);
-        SceneChange(Scene::GAME);
-
+        SceneChange(Scene::GamePlay);
         break;
     case Scene::PAUSE:
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
-            SceneChange(Scene::GAME);
+            SceneChange(Scene::GamePlay);
         }
         break;
     case Scene::GAMEOVER:
         if (InputMgr::GetKeyDown(Keyboard::Enter))
         {
-            SceneChange(Scene::GAME);
+            SceneChange(Scene::GamePlay);
         }
         break;
     default:
@@ -77,7 +74,7 @@ void SceneMgr::SceneChange(Scene id)
     currscene = id;
 }
 
-void SceneMgr::SceneDraw(RenderWindow& window)
+void SceneMgr::SceneDraw(RenderWindow& window, View& mainview, View& UiView)
 {
     window.clear();
 
@@ -86,8 +83,8 @@ void SceneMgr::SceneDraw(RenderWindow& window)
     case Scene::TITLE:
         title.Draw(window);
         break;
-    case Scene::GAME:
-        //  Game::Draw(*window);
+    case Scene::GamePlay:
+        play.draw(window, mainview, UiView);
         break;
     case Scene::LEVELUP:
         levelup.Draw(window);

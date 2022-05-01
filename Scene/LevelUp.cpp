@@ -21,10 +21,12 @@ void LevelUp::SelectUpgrade(Player& player, PickUp& pickup)
 {
     if (InputMgr::GetKeyDown(Keyboard::Num1))
     {
+        
         //연사속도 증가
     }
     if (InputMgr::GetKeyDown(Keyboard::Num2))
     {
+       
         //탄창수증가
     }
     if (InputMgr::GetKeyDown(Keyboard::Num3))

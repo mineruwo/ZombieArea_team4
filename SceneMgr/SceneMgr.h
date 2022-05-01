@@ -12,7 +12,7 @@ using namespace sf;
 enum class Scene
 {
 	TITLE,
-	GAME,
+	GamePlay,
 	LEVELUP,
 	PAUSE,
 	GAMEOVER,
@@ -43,5 +43,5 @@ public:
 	void sceneInitialize(RenderWindow& window, Vector2i resolution);
 	void SceneUpdate(Player& player, PickUp& pickup); // 키값에 반응하는것 switch case 작성
 	void SceneChange(Scene id);
-	void SceneDraw(RenderWindow& window);
+	void SceneDraw(RenderWindow& window, View& mainview, View& UiView);
 };

@@ -115,9 +115,11 @@
     <ClInclude Include="Wall\Wall.h">
       <Filter>Wall</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Title.h" />
     <ClInclude Include="Zombie\Blood.h">
       <Filter>Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Title.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

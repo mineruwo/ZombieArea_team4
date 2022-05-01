@@ -14,6 +14,7 @@
 #include "UI/UI.h"
 #include "Scene/Pause.h"
 #include "Scene/GameOver.h"
+#include "SceneMgr/SceneMgr.h"
 
 using namespace sf;
 using namespace std;
@@ -166,6 +167,8 @@ int main()
 	UI ui;
 	ReloadBar reloaing;
 
+	SceneMgr scenemgr;
+	
 	//initialize 
 
 	int waves = 0;
