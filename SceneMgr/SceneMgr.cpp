@@ -1,22 +1,25 @@
 #include "SceneMgr.h"
 
-SceneMgr::SceneMgr(RenderWindow& window)
-    : window(&window)
+SceneMgr::SceneMgr()
 {
+
 }
 
 SceneMgr::~SceneMgr()
 {
 }
 
-void SceneMgr::sceneInitialize()
+void SceneMgr::sceneInitialize(RenderWindow& window, Vector2i resolution)
 {
+
+    window.setMouseCursorVisible(false);
+
     switch (currscene)
     {
     case Scene::TITLE:
         break;
     case Scene::GAME:
-        //    scene = new GAME;
+        play.initialize(resolution);
         break;
     case Scene::LEVELUP:
         break;
@@ -42,6 +45,8 @@ void SceneMgr::SceneUpdate(Player& player, PickUp& pickup)
         {
             SceneChange(Scene::PAUSE);
         }
+
+
         break;
     case Scene::LEVELUP:
         levelup.SelectUpgrade(player, pickup);
@@ -72,25 +77,28 @@ void SceneMgr::SceneChange(Scene id)
     currscene = id;
 }
 
-void SceneMgr::SceneDraw()
+void SceneMgr::SceneDraw(RenderWindow& window)
 {
+    window.clear();
+
     switch (currscene)
     {
     case Scene::TITLE:
-        title.Draw(*window);
+        title.Draw(window);
         break;
     case Scene::GAME:
         //  Game::Draw(*window);
         break;
     case Scene::LEVELUP:
-        levelup.Draw(*window);
+        levelup.Draw(window);
         break;
     case Scene::PAUSE:
-        pause.Draw(*window);
+        pause.Draw(window);
         break;
     case Scene::GAMEOVER:
-        gameover.Draw(*window);
+        gameover.Draw(window);
         break;
     }
 
+    window.display();
 }
